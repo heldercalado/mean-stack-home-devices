@@ -15,12 +15,11 @@ app.use(express.json());
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
-// Connect to the database before starting the application server.
-mongoose.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/devicesshop", function (err, client) {
-  if (err) {
-    console.log(err);
-    process.exit(1);
-  }
+
+// Connect to the Mongo DB
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/devicesshops";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+
 
   // Save database object from the callback for reuse.
   //db = client.db();
@@ -31,4 +30,3 @@ mongoose.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:270
     var port = server.address().port;
     console.log("App now running on port", port);
   });
-});
