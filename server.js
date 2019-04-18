@@ -1,7 +1,7 @@
 var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-
+var app = express();
 
 
 // Use morgan logger for logging requests
@@ -16,7 +16,7 @@ var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 // Connect to the database before starting the application server.
-mongoose.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
+mongoose.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/devicesshop", function (err, client) {
   if (err) {
     console.log(err);
     process.exit(1);
