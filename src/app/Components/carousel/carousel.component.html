@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Latest Items</h2>
+  <ngb-carousel *ngIf="images">
+    <ng-template ngbSlide *ngFor="let item of items">
+      <div class="card" >
+        <img class="card-img-top" [src]="item.imgLink" alt="Card image cap">
+        <div class="card-body">
+          
+          <h5 class="card-title">{{item.name}}</h5>
+          <p class="card-text">{{item.price | currency}}</p>
+          <a href="#" class="btn btn-primary">More Details</a>
+        </div>
+      </div>
+
+    </ng-template>
+
+  </ngb-carousel>
+</div>

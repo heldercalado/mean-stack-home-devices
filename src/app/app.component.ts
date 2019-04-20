@@ -15,7 +15,7 @@ interface Alert {
 export class AppComponent {
   title = 'mean-stack-home-devices';
   displayAlert = true;
-  isNavbarCollapsed=true
+
 
   close() {
     this.displayAlert = false;
