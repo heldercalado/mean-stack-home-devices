@@ -1,17 +1,26 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary ">
   <a class="navbar-brand" href="#">Home Devices</a>
   <button class="navbar-toggler hidden-sm-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown" ngbDropdown>
+      <!-- <li class="nav-item dropdown" ngbDropdown>
         <a class="nav-link dropdown-toggle" id="id01" href="#" ngbDropdownToggle>Files</a>
         <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
           <a class="dropdown-item" href="#">HTML</a>
           <a class="dropdown-item" href="#">TS</a>
           <a class="dropdown-item" href="#">JS</a>
         </div>
+      </li> -->
+      <li class="nav-item">
+          <a class="nav-link text-white" href="#"><i class="fas fa-sign-in-alt"></i>Log In</a>
+      </li>
+      <li class="nav-item ">
+          <a class="nav-link text-white" href="#">Register</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-white" href="#"><i class="fas fa-shopping-cart"></i>0 Items</a>
       </li>
     </ul>
   </div>
