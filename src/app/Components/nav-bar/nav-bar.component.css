@@ -3,7 +3,12 @@ i {
 }
 
 .nav-link:hover {
-    color: rgb(248, 233, 18) !important;
+    color: #fbeec1!important;
 
     text-shadow: 2px 2px 4px #000000;
     }
+
+.navbar {
+
+    background-color: #659dbd;
+}
