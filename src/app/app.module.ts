@@ -12,6 +12,10 @@ import { CarouselComponent } from './Components/carousel/carousel.component';
 import { HomeComponent } from './Components/home/home.component';
 import { ItemComponent } from './Components/item/item.component';
 import { ToolbarComponent } from './Components/toolbar/toolbar.component';
+import { ConsolesComponent } from './Components/consoles/consoles.component';
+import { GamesComponent } from './Components/games/games.component';
+import { ComputersComponent } from './Components/computers/computers.component';
+import { ElectronicsComponent } from './Components/electronics/electronics.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { ToolbarComponent } from './Components/toolbar/toolbar.component';
     CarouselComponent,
     HomeComponent,
     ItemComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ConsolesComponent,
+    GamesComponent,
+    ComputersComponent,
+    ElectronicsComponent
   ],
   imports: [
     BrowserModule,
