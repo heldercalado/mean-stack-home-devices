@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit {
   }
   get_message() {
   
-    return this.items.getConfig().subscribe((data: Message) => {
-      this.message = data.message ;
-    });
+    // return this.items.getConfig().subscribe((data: Message) => {
+    //   this.message = data.message ;
+    // });
   }
 }
