@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// http client import for the services
+import { HttpClientModule } from '@angular/common/http';
+
 // bootstrap module
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
@@ -34,7 +37,8 @@ import { ElectronicsComponent } from './Components/electronics/electronics.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

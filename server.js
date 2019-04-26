@@ -11,15 +11,30 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// set cors
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
+
+// use the api routes
+
+let apiRoute = require ("./api/apiroute")
+app.use('/api' , apiRoute);
+
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 
+
+
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/devicesshops";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
-
 
   // Save database object from the callback for reuse.
   //db = client.db();
