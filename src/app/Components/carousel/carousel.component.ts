@@ -1,18 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ItemsService } from '../../Services/items.service';
+import { Item } from '../../Interfaces/item';
 
 
 
-export interface Items {
-  _Id: string ,
-  Name: string;
-  Description: string;
-  Category: string;
-  Price: number;
-  Quantity: number;
-  imgUrl: string;
-}
 
 @Component({
   selector: 'app-carousel',
@@ -32,9 +24,9 @@ export class CarouselComponent implements OnInit {
     this.getItemList();
   }
   getItemList() {
-this.itemService.getItemList().subscribe( (data: Items[])  => {
-this.itemList = data ;
-console.log(data);
-});
+    this.itemService.getItemList().subscribe((data: Item[]) => {
+      this.itemList = data;
+
+    });
   }
 }

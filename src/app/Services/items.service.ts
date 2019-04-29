@@ -6,14 +6,22 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ItemsService {
-  baseApiRoute = location.href === 'http://localhost:4200/' ? 'http://localhost:8080/api' : '/api';
+
+ 
 
   constructor(private http: HttpClient) { }
-
+  baseApiRoute = location.href.indexOf('http://localhost:4200/') !== -1 ? 'http://localhost:8080/api' : '/api';
   getItemList() {
-// now returns an Observable of Config
 
-  return this.http.get(this.baseApiRoute + '/item/list');
+
+    return this.http.get(this.baseApiRoute + '/item/list');
+
+
+  }
+  getItemListbyCategory(argCategory) {
+
+
+    return this.http.get(this.baseApiRoute + '/list/' + argCategory);
 
 
   }

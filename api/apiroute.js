@@ -115,6 +115,14 @@ router.get("/item/bulk", function (req,res){
     res.sendStatus(200);
 })
 
+router.get("/list/:category", function (req,res){
+    console.log(req.params.category);
+    db.Items.find({"Category":req.params.category})
+    .then(data => {
+ res.json(data);
+    });
+});
+
 
 
 module.exports = router ;
