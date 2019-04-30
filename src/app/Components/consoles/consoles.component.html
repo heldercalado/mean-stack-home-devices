@@ -1,8 +1,17 @@
-<app-toolbar [pageName]='pageName'></app-toolbar>
 <div class="container">
-
-    <p>
-        consoles works!
-      </p>
-</div>
+    <div class="row" *ngIf='itemList.length > 0'>
+      <div class="col-md-4" *ngFor="let item of itemList">
+  
+        <div class="card">
+          <img class="card-img-top" src="{{item.imgUrl}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{item.Name}}</h5>
+            <p class="card-text">{{item.Description}}</p>
+            <p class="card-text">{{item.Price | currency}}</p>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 

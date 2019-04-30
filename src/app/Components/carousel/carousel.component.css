@@ -3,4 +3,9 @@ img {
     height: 51vh;
 
 }
+.btn {
+    background-color: #659dbd;
+    color:white;
+}
+
 .carousel-indicators li { visibility: hidden; }

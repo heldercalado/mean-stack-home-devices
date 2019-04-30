@@ -9,13 +9,15 @@ import { CommunicationService } from 'src/app/Services/communication.service';
   styleUrls: ['./computers.component.css']
 })
 export class ComputersComponent implements OnInit {
-  pageName: string = 'Computers';
+  pageName = 'Computers';
   itemList: Item[] = [];
   constructor(private itemsService: ItemsService, private comm: CommunicationService) { }
 
   ngOnInit() {
     this.getComputerItems();
+    // send an emit event to app.component.ts to change the toolbar to computers
     this.comm.emit(this.pageName);
+
   }
 
   getComputerItems() {

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   constructor(private items: ItemsService, private comm: CommunicationService) { }
   message: string;
   ngOnInit() {
-
+    // send an emit event to app.component.ts to change the toolbar to home
     this.comm.emit(this.pageName);
 
 
