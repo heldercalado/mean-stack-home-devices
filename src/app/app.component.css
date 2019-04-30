@@ -17,4 +17,5 @@ text-shadow: 2px 2px 4px #000000;
 /* set the content class to take the whole screen 100vh - the two navbars 40px each */
 .content {
     height: calc(100vh - 80px);
+    overflow: auto;
 }
