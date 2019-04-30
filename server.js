@@ -1,5 +1,6 @@
 var express = require("express");
 var logger = require("morgan");
+const path = require('path');
 var mongoose = require("mongoose");
 var app = express();
 
@@ -26,8 +27,8 @@ let apiRoute = require ("./api/apiroute")
 app.use('/api' , apiRoute);
 
 // Create link to Angular build directory
-var distDir = __dirname + "/dist/";
-app.use(express.static(distDir));
+// Serve static files....
+app.use(express.static(__dirname + '/dist/mean-stack-home-devices'));
 
 
 
@@ -39,6 +40,12 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
   // Save database object from the callback for reuse.
   //db = client.db();
   console.log("Database connection ready");
+
+
+  app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/dist/mean-stack-home-devices/index.html'));
+  });
+
 
   // Initialize the app.
   var server = app.listen(process.env.PORT || 8080, function () {
