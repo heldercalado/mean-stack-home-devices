@@ -1,26 +1,31 @@
 <div class="container">
-    <div class="row" *ngIf='itemList.length > 0'>
-      <div class="col-md-4" *ngFor="let item of itemList">
-  
-        <div class="card h-100">
-          <img class="card-img-top" src="{{item.imgUrl}}" alt="Card image cap">
-          <div class="card-body h-100">
-            <h5 class="card-title">{{item.Name}}</h5>
-            <p><ngb-rating [rate]="getRandomRating()">
-                <ng-template let-fill="fill" let-index="index">
-                <span class="star" [class.filled]="fill === 100" >&#9733;</span>
-                
-                </ng-template>
-            </ngb-rating><span class="reviews-quantity"><a routerLink="">{{getRandomReviewsNumber()}}</a></span></p>
-            <p class="card-text">{{item.Description}}</p>
-            <p class="card-text">{{item.Price | currency}}</p>
-            
-          </div>
-          <div class="card-footer">
-              <a href="#" class="btn btn-primary">Add to cart</a>
-              </div>
+  <div class="row" *ngIf='itemList.length > 0'>
+    <div class="col-md-4" *ngFor="let item of itemList" >
+<!-- {{getRandomRating()}}
+{{getRandomReviewsNumber()}} -->
+      <div class="card h-100">
+        <img class="card-img-top" src="{{item.imgUrl}}" alt="Card image cap">
+        <div class="card-body h-100">
+          <h5 class="card-title">{{item.Name}}</h5>
+
+          <p>
+              <ngb-rating [(rate)]="currentRate">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+            <span class="reviews-quantity">
+              <a routerLink="">{{reviewsQuantity}}</a>
+            </span>
+          </p>
+          <p class="card-text">{{item.Description}}</p>
+          <p class="card-text">{{item.Price | currency}}</p>
+
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn btn-primary">Add to cart</a>
         </div>
       </div>
     </div>
   </div>
-
+</div>

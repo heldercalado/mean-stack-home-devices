@@ -13,5 +13,9 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  changeToolbarState(){
+    this.isNavbarCollapsed =  !this.isNavbarCollapsed;
+  }
+
 
 }

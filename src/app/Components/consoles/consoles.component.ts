@@ -25,12 +25,14 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
   `]
 })
 export class ConsolesComponent implements OnInit {
-pageName = 'Consoles';
-itemList: Item[] = [];
-  constructor(private comm: CommunicationService , private itemsService: ItemsService, private ratingConfig: NgbRatingConfig) {
+  pageName = 'Consoles';
+  itemList: Item[] = [];
+  currentRate = 4;
+  reviewsQuantity = '(200)';
+  constructor(private comm: CommunicationService, private itemsService: ItemsService, private ratingConfig: NgbRatingConfig) {
     ratingConfig.max = 5;
     ratingConfig.readonly = true;
-   }
+  }
 
   ngOnInit() {
     this.getConsoleItems();
@@ -38,16 +40,21 @@ itemList: Item[] = [];
     this.comm.emit(this.pageName);
 
   }
-getConsoleItems() {
-  this.itemsService.getItemListbyCategory(this.pageName).subscribe((data: Item[]) => {
-    this.itemList = data;
+  getConsoleItems() {
+    this.itemsService.getItemListbyCategory(this.pageName).subscribe((data: Item[]) => {
+      this.itemList = data;
 
-  });
-}
-getRandomRating(){
-  return Math.floor(Math.random() * Math.floor(this.ratingConfig.max));
-}
-getRandomReviewsNumber(){
-  return '(' + Math.floor(Math.random() * Math.floor(500)) + ')';
-}
+    });
+  }
+  getRandomRating() {
+
+  this.currentRate = Math.floor(Math.random() * Math.floor(this.ratingConfig.max));
+  console.log(this.currentRate);
+
+  }
+  getRandomReviewsNumber() {
+
+    this.reviewsQuantity = '(' + Math.floor(Math.random() * Math.floor(500)) + ')';
+    console.log(this.reviewsQuantity);
+  }
 }
