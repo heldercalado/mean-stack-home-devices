@@ -71,7 +71,7 @@ db.Items.find().then(data =>{
 });
 router.get("/computers", function (req, res){
 
-    db.Computers.find().then(data =>{
+    db.Computers.find().limit(20).then(data =>{
         if (data){
             res.json(data);
         }

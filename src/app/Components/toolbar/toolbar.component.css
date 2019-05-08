@@ -28,6 +28,12 @@
 
     .dropdown-background {
         background-color: #daad86;
+        /* width:300px !important */
+        
+    }
+    .dropdown-menu {
+        
+        width: 250px !important;
     }
     .dropdown-item:hover {
         background-color: #daad86;
