@@ -69,6 +69,15 @@ db.Items.find().then(data =>{
 });
 
 });
+router.get("/computers", function (req, res){
+
+    db.Computers.find().then(data =>{
+        if (data){
+            res.json(data);
+        }
+    });
+    
+    });
 
 router.get("/item/list", function (req, res){
 

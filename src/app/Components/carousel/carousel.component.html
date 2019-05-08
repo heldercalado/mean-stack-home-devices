@@ -3,10 +3,11 @@
   <ngb-carousel *ngIf="images">
     <ng-template ngbSlide *ngFor="let item of itemList">
       <div class="card" >
-        <img class="card-img-top" [src]="item.imgUrl" alt="Card image cap">
+        <h5 class="card-title">{{item.Name}}</h5>
+        <img class="card-img-top" [src]="item.ImgUrl" alt="Card image cap">
         <div class="card-body">
           
-          <h5 class="card-title">{{item.Name}}</h5>
+          <h5 class="card-title">{{item.Description}}</h5>
           <p class="card-text">{{item.Price | currency}}</p>
           <a href="#" class="btn">More Details</a>
         </div>

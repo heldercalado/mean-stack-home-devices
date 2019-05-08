@@ -10,16 +10,18 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./consoles.component.css'],
   styles: [`
     .star {
+      position: relative;
+      display: inline-block;
       font-size: 1.5rem;
-      color: #b0c4de;
+      color: #659dbd;
     }
-    .filled {
-      color: #daad86;
+    .full {
+      color: #daad86 ;
     }
-    .bad {
-      color: #deb0b0;
-    }
-    .filled.bad {
+    .half {
+      position: absolute;
+      display: inline-block;
+      overflow: hidden;
       color: #daad86;
     }
   `]
@@ -27,7 +29,7 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 export class ConsolesComponent implements OnInit {
   pageName = 'Consoles';
   itemList: Item[] = [];
-  currentRate = 4;
+  currentRate = 3.2;
   reviewsQuantity = '(200)';
   constructor(private comm: CommunicationService, private itemsService: ItemsService, private ratingConfig: NgbRatingConfig) {
     ratingConfig.max = 5;

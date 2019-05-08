@@ -10,14 +10,53 @@
       <li class="nav-item" *ngIf="pageName != 'Electronics'">
         <a class="nav-link text-white" routerLink="/electronics" routerLinkActive="active" (click)="changeToolbarState()">Electronics</a>
       </li>
+      <!-- <li class="nav-item" *ngIf="pageName != 'Consoles'">
+        <a class="nav-link text-white"  routerLink="/consoles"  routerLinkActive="active" (click)="changeToolbarState()">Consoles</a> -->
       <li class="nav-item" *ngIf="pageName != 'Consoles'">
-        <a class="nav-link text-white" routerLink="/consoles"  routerLinkActive="active" (click)="changeToolbarState()">Consoles</a>
+          <div ngbDropdown class="d-inline-block">
+              <a class="btn nav-link dropdown-toggle text-white" id="dropdownBasic1" ngbDropdownToggle>Consoles</a>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-background">
+                <a ngbDropdownItem class="btn nav-link">
+                    <img src="http://icons.iconarchive.com/icons/martz90/circle-addon1/48/xbox-icon.png" class="menu-icon" alt="">
+                  XBOX Systems</a>
+                <div class="dropdown-divider"></div>
+                <a ngbDropdownItem class="btn nav-link">
+                    <img src="http://www.iconarchive.com/download/i76049/martz90/circle-addon2/playstation.ico" class="menu-icon" alt="">
+                  PlayStation Systems</a>
+                </div>
+            </div>
       </li>
       <li class="nav-item" *ngIf="pageName != 'Games'">
-        <a class="nav-link text-white" routerLink="/games" (click)="changeToolbarState()">Games</a>
+          <div ngbDropdown class="d-inline-block">
+              <a class="btn nav-link dropdown-toggle text-white" id="dropdownBasic1" ngbDropdownToggle>Games</a>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-background">
+                <a ngbDropdownItem class="btn nav-link">
+                    <img src="http://icons.iconarchive.com/icons/martz90/circle-addon1/48/xbox-icon.png" class="menu-icon" alt="">
+                  XBOX Games</a>
+                <div class="dropdown-divider"></div>
+                <a ngbDropdownItem class="btn nav-link">
+                    <img src="http://www.iconarchive.com/download/i76049/martz90/circle-addon2/playstation.ico" class="menu-icon" alt=""> 
+                PlayStation Games</a>
+                <div class="dropdown-divider"></div>
+                <a ngbDropdownItem class="btn nav-link">
+                    <img src="http://icons.iconarchive.com/icons/jommans/emluator/48/My-Computer-icon.png" class="menu-icon" alt="">
+                  Computer Games</a>
+                </div>
+            </div>
       </li>
       <li class="nav-item" *ngIf="pageName != 'Computers'">
-        <a class="nav-link text-white" routerLink="/computers" (click)="changeToolbarState()">Computers</a>
+          <div ngbDropdown class="d-inline-block">
+              <a class="btn nav-link dropdown-toggle text-white" id="dropdownBasic1" ngbDropdownToggle>Computer Systems</a>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-background">
+                <a ngbDropdownItem class="btn nav-link" routerLink="/computers">
+                  <img src="http://icons.iconarchive.com/icons/jommans/emluator/48/My-Computer-icon.png" class="menu-icon" alt="">
+                  Desktop Systems</a>
+                <div class="dropdown-divider"></div>
+                <a ngbDropdownItem class="btn nav-link">
+                    <img src="http://icons.iconarchive.com/icons/media-design/hydropro-v2/48/Laptop-icon.png" class="menu-icon" alt="">
+                  Laptop / NoteBook Systems</a>
+                </div>
+            </div>
       </li>
       <li class="nav-item" *ngIf="pageName != 'Item'">
         <a class="nav-link text-white" routerLink="/item" (click)="changeToolbarState()">Item</a>

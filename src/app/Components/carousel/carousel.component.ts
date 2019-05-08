@@ -14,7 +14,7 @@ import { Item } from '../../Interfaces/item';
 export class CarouselComponent implements OnInit {
   itemList = [];
   images = this.itemList.map((data) => {
-    return data.imgUrl;
+    return data.ImgUrl;
   });
   constructor(config: NgbCarouselConfig, private itemService: ItemsService) {
     config.showNavigationIndicators = false;
@@ -24,7 +24,7 @@ export class CarouselComponent implements OnInit {
     this.getItemList();
   }
   getItemList() {
-    this.itemService.getItemList().subscribe((data: Item[]) => {
+    this.itemService.getComputers().subscribe((data: Item[]) => {
       this.itemList = data;
 
     });

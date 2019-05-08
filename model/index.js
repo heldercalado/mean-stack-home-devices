@@ -2,5 +2,6 @@
 
 module.exports = {
     Items: require("./Items"),
+    Computers: require("./Computers"),
     
   };

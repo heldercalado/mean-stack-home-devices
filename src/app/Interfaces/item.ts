@@ -1,9 +1,12 @@
 export interface Item {
-    _Id: string ;
-    Name: string;
-    Description: string;
-    Category: string;
-    Price: number;
-    Quantity: number;
-    imgUrl: string;
-  }
+  Brand: string;
+  BrandImgUrl: string;
+  ImgUrl: string;
+  Id: string;
+  Link: string;
+  Name: string;
+  Description: string;
+  Features: string;
+  Price: number;
+  DateAdded: Date;
+}

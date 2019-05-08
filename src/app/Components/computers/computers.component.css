@@ -5,3 +5,16 @@
     background-color: #659dbd;
     color:white;
 }
+.container-text {
+    height: 90%;
+}
+.container-price {
+    height:10%
+}
+i {
+    margin-right:5px;
+}
+.reviews-quantity {
+    margin-left:10px;
+    font-size: 1.5rem;
+}

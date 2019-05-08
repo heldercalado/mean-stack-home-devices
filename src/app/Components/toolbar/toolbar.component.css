@@ -18,3 +18,22 @@
         color:#fbeec1 ;
        
     }
+
+    a > i  {
+        margin-right: 5px;
+        color: #fbeec1;
+    }
+
+    
+
+    .dropdown-background {
+        background-color: #daad86;
+    }
+    .dropdown-item:hover {
+        background-color: #daad86;
+    }
+    .menu-icon{
+        margin-right:10px;
+        height: 25px;
+        width: 25px;
+    }
