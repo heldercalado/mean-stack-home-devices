@@ -21,7 +21,22 @@
                     <a routerLink="">{{reviewsQuantity}}</a>
                   </span>
                 </p>
-                <p class="card-text">{{item.Description}}</p>
+                <ngb-tabset>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>Main</ng-template>
+                      <ng-template ngbTabContent>
+                          <p class="card-text">{{item.Description}}</p>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                      <ng-template ngbTabTitle>Features</ng-template>
+                      <ng-template ngbTabContent>
+                        <p>{{item.Features}}</p>
+                      </ng-template>
+                    </ngb-tab>
+                    
+                  </ngb-tabset>
+                
             </div>
           </div>
           <div class="row container-price">
