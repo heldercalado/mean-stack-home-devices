@@ -90,8 +90,8 @@ export class ItemsdisplayComponent implements OnInit {
     });
 
   }
-  getPage(arg) {
-    console.log(arg);
+  getPage() {
+
     console.log(this.pageNumber);
     let number = (this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage;
     console.log(number);
