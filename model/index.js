@@ -7,5 +7,5 @@ module.exports = {
     XboxConsoles: require("./Xboxconsoles"),
     XboxGames: require("./Xboxgames"),
     PlayStationConsoles: require("./Playstationconsoles"),
-    PlayStationGames: require("./PlaystationGames"),
+    PlayStationGames: require("./Playstationgames"),
   };
