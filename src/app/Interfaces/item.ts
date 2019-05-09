@@ -7,6 +7,7 @@ export interface Item {
   Name: string;
   Description: string;
   Features: string;
+  FilteredFeatures: string [];
   Price: number;
   DateAdded: Date;
 }

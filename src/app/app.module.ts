@@ -19,6 +19,14 @@ import { ConsolesComponent } from './Components/consoles/consoles.component';
 import { GamesComponent } from './Components/games/games.component';
 import { ComputersComponent } from './Components/computers/computers.component';
 import { ElectronicsComponent } from './Components/electronics/electronics.component';
+import { ItemsdisplayComponent } from './Components/itemsdisplay/itemsdisplay.component';
+import { XboxgamesComponent } from './Components/xboxgames/xboxgames.component';
+import { XboxconsolesComponent } from './Components/xboxconsoles/xboxconsoles.component';
+import { PlaystationgamesComponent } from './Components/playstationgames/playstationgames.component';
+import { PlaystationconsolesComponent } from './Components/playstationconsoles/playstationconsoles.component';
+import { DesktopsComponent } from './Components/desktops/desktops.component';
+import { LaptopsComponent } from './Components/laptops/laptops.component';
+import { ComputergamesComponent } from './Components/computergames/computergames.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +40,15 @@ import { ElectronicsComponent } from './Components/electronics/electronics.compo
     ConsolesComponent,
     GamesComponent,
     ComputersComponent,
-    ElectronicsComponent
+    ElectronicsComponent,
+    ItemsdisplayComponent,
+    XboxgamesComponent,
+    XboxconsolesComponent,
+    PlaystationgamesComponent,
+    PlaystationconsolesComponent,
+    DesktopsComponent,
+    LaptopsComponent,
+    ComputergamesComponent
   ],
   imports: [
     BrowserModule,

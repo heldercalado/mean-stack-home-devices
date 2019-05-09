@@ -14,19 +14,44 @@ interface Alert {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  ItemsPerPage = 20;
+  SortBy = '';
+  SearchKeyWord = '';
+  pageName = '';
   title = 'mean-stack-home-devices';
 
-  pageName = '';
+
   constructor(
     private comm: CommunicationService
   ) {
     this.comm.emitChange.subscribe(
       text => {
         setTimeout(() => {
-          this.pageName = text;
+          this.pageName = text.Value;
+        }, 1);
+
+      });
+    this.comm.itemsPerPage.subscribe(
+      text => {
+        setTimeout(() => {
+          this.ItemsPerPage = text;
+        }, 1);
+
+      });
+    this.comm.sortByText.subscribe(
+      text => {
+        setTimeout(() => {
+          this.SortBy = text;
+        }, 1);
+
+      });
+    this.comm.searchKeyWordText.subscribe(
+      text => {
+        setTimeout(() => {
+          this.SearchKeyWord = text;
         }, 1);
 
       });
   }
-  
+
 }

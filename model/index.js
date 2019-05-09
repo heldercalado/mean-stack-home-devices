@@ -3,5 +3,5 @@
 module.exports = {
     Items: require("./Items"),
     Computers: require("./Computers"),
-    
+    XboxConsoles: require("./Xboxconsoles"),
   };

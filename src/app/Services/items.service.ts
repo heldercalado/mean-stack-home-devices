@@ -34,5 +34,13 @@ export class ItemsService {
 
   }
 
+  getXboxConsoles() {
+
+
+    return this.http.get(this.baseApiRoute + '/xboxconsoles/');
+
+
+  }
+
 
 }

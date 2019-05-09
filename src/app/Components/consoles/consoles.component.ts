@@ -3,6 +3,7 @@ import { CommunicationService } from 'src/app/Services/communication.service';
 import { ItemsService } from 'src/app/Services/items.service';
 import { Item } from '../../Interfaces/item';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import {EventMessage} from 'src/app/Services/communication.service';
 
 @Component({
   selector: 'app-consoles',
@@ -27,23 +28,29 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
   `]
 })
 export class ConsolesComponent implements OnInit {
-  pageName = 'Consoles';
+ 
   itemList: Item[] = [];
   currentRate = 3.2;
   reviewsQuantity = '(200)';
+  emitMessage: EventMessage = {
+    Type:'pageName',
+    Value: 'Consoles'
+  }
   constructor(private comm: CommunicationService, private itemsService: ItemsService, private ratingConfig: NgbRatingConfig) {
     ratingConfig.max = 5;
     ratingConfig.readonly = true;
   }
 
   ngOnInit() {
+   
+    this.comm.emit(this.emitMessage);
     this.getConsoleItems();
     // send an emit event to app.component.ts to change the toolbar to computers
-    this.comm.emit(this.pageName);
+    
 
   }
   getConsoleItems() {
-    this.itemsService.getItemListbyCategory(this.pageName).subscribe((data: Item[]) => {
+    this.itemsService.getItemListbyCategory(this.emitMessage.Value).subscribe((data: Item[]) => {
       this.itemList = data;
 
     });
