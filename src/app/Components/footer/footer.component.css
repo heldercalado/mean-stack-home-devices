@@ -1,3 +1,7 @@
 .footer {
     background-color: #659dbd;
 }
+footer {
+    width: 100% !important;
+    height: 24px
+}

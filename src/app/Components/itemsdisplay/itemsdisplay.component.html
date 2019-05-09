@@ -1,75 +1,80 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 align-self-center">
-            <ngb-pagination [directionLinks]="false" [boundaryLinks]="false" [rotate]="true" [maxSize]=5 [collectionSize]="totalPages" [pageSize]="ItemsPerPage" [(page)]="pageNumber"  aria-label="Default pagination" [size]="'sm'" (pageChange)="getPage()" ></ngb-pagination>
-        </div>
-      </div>
+<div class="container p-0">
 
-</div>
 
-<div class="row h-100" *ngIf='sortedListOfItems'>
+  <div class="row">
     
-  <div class="col-md-4" *ngFor="let item of sortedListOfItems">
-     
+    <div class="col-lg-6 offset-lg-3 d-flex">
+      <ngb-pagination class="mx-auto" [directionLinks]="false" [boundaryLinks]="false" [rotate]="true" [maxSize]=5
+        [collectionSize]="totalItems" [pageSize]="ItemsPerPage" [(page)]="pageNumber" aria-label="Default pagination"
+        [size]="paginationSize" (pageChange)="getPage()"></ngb-pagination>
+    </div>
+    
+  </div>
+
+
+
+<div class="row" *ngIf='sortedListOfItems'>
+
+  <div class="col-md-3" *ngFor="let item of sortedListOfItems">
+
     <div class="card h-100">
       <img class="card-img-top" src="{{item.ImgUrl}}" alt="Card image cap">
-      <div class="card-body h-100">
+      <div class="card-body ">
         <div class="row container-text">
-          <div class="col-md-12">
-              <h5 class="card-title">{{item.Name}}</h5>
-              <p>
-                  <ng-template #t let-fill="fill">
-                      <span class="star" [class.full]="fill === 100">
-                        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
-                      </span>
-                    </ng-template>
-                    
-                    <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
-                <span class="reviews-quantity">
-                  <a routerLink="">{{reviewsQuantity}}</a>
+          <div class="col-md-12 mx-auto">
+            <img src="{{item.BrandImgUrl}}">
+            <p>
+              <ng-template #t let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                  <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
                 </span>
-              </p>
-              <ngb-tabset>
-                  <ngb-tab>
-                      <ng-template ngbTabTitle>Main</ng-template>
-                    <ng-template ngbTabContent >
-                        <p class="card-text">{{item.Description}}</p>
-                    </ng-template>
-                  </ngb-tab>
-                  <ngb-tab>
-                    <ng-template ngbTabTitle>Features</ng-template>
-                    <ng-template ngbTabContent >
-                        <ul>
-                        <li *ngFor="let feature of item.FilteredFeatures">{{feature}}</li>
-                        </ul>
-                      
-                    
-                    </ng-template>
-                  </ngb-tab>
-                  
-                </ngb-tabset>
-              
+              </ng-template>
+
+              <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+              <span class="reviews-quantity">
+                <a routerLink="">{{reviewsQuantity}}</a>
+              </span>
+            </p>
+            <ngb-tabset>
+              <ngb-tab>
+                <ng-template ngbTabTitle>Main</ng-template>
+                <ng-template ngbTabContent>
+                  <p class="card-text">{{item.Description}}</p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab>
+                <ng-template ngbTabTitle>Features</ng-template>
+                <ng-template ngbTabContent>
+                  <ul>
+                    <li *ngFor="let feature of item.FilteredFeatures">{{feature}}</li>
+                  </ul>
+
+
+                </ng-template>
+              </ngb-tab>
+
+            </ngb-tabset>
+
           </div>
         </div>
         <div class="row container-price">
-            <div class="col-sm-12">
-                <p class="card-text">{{item.Price | currency}}</p>
-            </div>
+          <div class="col-sm-12">
+            <p class="card-text"><b>{{item.Price | currency}}</b></p>
           </div>
-       
-        
+        </div>
+
+
       </div>
       <div class="card-footer">
         <div class="row">
-          <div class="col  mx-auto">
-              <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Add to cart</a>
+          <div class="col-xs-12  mr-auto">
+            <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Add to cart</a>
           </div>
-          <div class="col d-flex justify-content-end">
-              <a href="#" class="btn btn-primary"><i class="fas fa-info-circle"></i>More Info</a>
-          </div>
+          
         </div>
       </div>
     </div>
   </div>
-</div>
 
+</div>
+</div>

@@ -19,3 +19,9 @@ i {
     font-weight: bolder;
     padding:0;
 }
+
+nav {
+    position: relative;
+    width: 100%;
+    margin:0;
+}

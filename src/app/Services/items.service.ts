@@ -7,25 +7,53 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ItemsService {
 
- 
+
 
   constructor(private http: HttpClient) { }
   baseApiRoute = location.href.indexOf('http://localhost:4200/') !== -1 ? 'http://localhost:8080/api' : '/api';
-  getItemList() {
 
 
-    return this.http.get(this.baseApiRoute + '/item/list');
 
+  getXboxGamesList() {
 
-  }
-  getItemListbyCategory(argCategory) {
-
-
-    return this.http.get(this.baseApiRoute + '/list/' + argCategory);
-
+    return this.http.get(this.baseApiRoute + '/xboxgames/');
 
   }
 
+
+  getXboxConsolesList() {
+
+    return this.http.get(this.baseApiRoute + '/xboxconsoles/');
+
+  }
+
+
+
+
+
+  getPlaystationGamesList() {
+
+    return this.http.get(this.baseApiRoute + '/playstationgames/');
+
+  }
+
+
+  getPlaystationConsolesList() {
+
+    return this.http.get(this.baseApiRoute + '/playstationconsoles/');
+
+  }
+
+  getDesktopList() {
+
+    return this.http.get(this.baseApiRoute + '/desktopsystems/');
+
+  }
+  getPcGameList() {
+
+    return this.http.get(this.baseApiRoute + '/computergames/');
+
+  }
   getComputers() {
 
 

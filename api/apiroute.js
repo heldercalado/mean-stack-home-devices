@@ -15,7 +15,7 @@ router.get("/", function (req, res) {
   });
 
 });
-router.get("/computers", function (req, res) {
+router.get("/desktopsystems", function (req, res) {
 
   db.Computers.find().sort({
     Date: -1
@@ -29,7 +29,7 @@ router.get("/computers", function (req, res) {
 });
 router.get("/computergames", function (req, res) {
 
-    db.Computers.find().sort({
+    db.ComputersGames.find().sort({
       Date: -1
     }).then(data => {
       if (data) {
@@ -39,9 +39,9 @@ router.get("/computergames", function (req, res) {
     });
   
   });
-  router.get("/playstation", function (req, res) {
-
-    db.Computers.find().sort({
+  router.get("/playstationconsoles", function (req, res) {
+    
+    db.PlayStationConsoles.find().sort({
       Date: -1
     }).then(data => {
       if (data) {
@@ -53,7 +53,7 @@ router.get("/computergames", function (req, res) {
   });
   router.get("/playstationgames", function (req, res) {
   
-      db.Computers.find().sort({
+      db.PlayStationGames.find().sort({
         Date: -1
       }).then(data => {
         if (data) {
@@ -78,7 +78,7 @@ router.get("/xboxconsoles", function (req, res) {
 });
 router.get("/xboxgames", function (req, res) {
 
-  db.XboxConsoles.find().sort({
+  db.XboxGames.find().sort({
     Date: -1
   }).then(data => {
     if (data) {
