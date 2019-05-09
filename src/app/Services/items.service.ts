@@ -57,7 +57,7 @@ export class ItemsService {
   getComputers() {
 
 
-    return this.http.get(this.baseApiRoute + '/computers/');
+    return this.http.get(this.baseApiRoute + '/desktopsystems/');
 
 
   }
