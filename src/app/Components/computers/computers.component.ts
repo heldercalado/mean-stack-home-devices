@@ -45,7 +45,7 @@ export class ComputersComponent implements OnInit {
   }
 
   getComputerItems() {
-    this.itemsService.getComputers().subscribe((data: Item[]) => {
+    this.itemsService.getItemList('Desktop PC').subscribe((data: Item[]) => {
 
       data.map(info => {
         info.FilteredFeatures = this.formatFeatures(info.Features);

@@ -18,7 +18,7 @@ export class AppComponent {
   SortBy = '';
   SearchKeyWord = '';
   pageName = '';
-  title = 'mean-stack-home-devices';
+  title = 'Tech 4 Less';
 
 
   constructor(

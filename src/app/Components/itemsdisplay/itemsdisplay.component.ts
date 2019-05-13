@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Item } from '../../Interfaces/item';
 import { CommunicationService } from 'src/app/Services/communication.service';
 import { ItemsService } from 'src/app/Services/items.service';
@@ -51,28 +51,30 @@ export class ItemsdisplayComponent implements OnInit {
     this.comm.itemsPerPage.subscribe((data: EventMessage) => {
       this.pageNumber = 1;
       this.ItemsPerPage = data.Value;
-      if (this.itemType === 'Computer') {
-        this.getComputerItems();
-      } else if (this.itemType === 'Consoles') {
-        this.getXboxConsoles();
-      } else if (this.itemType === 'Computer') {
-        this.getComputerItems();
-      } else if (this.itemType === 'Desktop Systems') {
-        this.getDesktopList();
-      } else if (this.itemType === 'PC Games') {
-        this.getPcGameList();
-      } else if (this.itemType === 'PlayStation Consoles') {
-        this.getPlayStationConsolesList();
-      } else if (this.itemType === 'PlayStation Games') {
-        this.getPlayStationGamesList();
-      } else if (this.itemType === 'Xbox Consoles') {
-        this.getXboxConsolesList();
-      } else if (this.itemType === 'Xbox Games') {
-        this.getXboxGamesList();
-      }
+
 
     });
-
+    if (this.itemType === 'Computer') {
+      this.getList('Consoles PlayStation');
+    } else if (this.itemType === 'Consoles') {
+      this.getList('Consoles PlayStation');
+    } else if (this.itemType === 'Computer') {
+      this.getList('Consoles PlayStation');
+    } else if (this.itemType === 'Desktop Systems') {
+      this.getList('Desktop PC');
+    } else if (this.itemType === 'Laptop Systems') {
+      this.getList('Laptop PC');
+    } else if (this.itemType === 'PC Games') {
+      this.getList('Games PC');
+    } else if (this.itemType === 'PlayStation Consoles') {
+      this.getList('Consoles PlayStation');
+    } else if (this.itemType === 'PlayStation Games') {
+      this.getList('Games PlayStation');
+    } else if (this.itemType === 'Xbox Consoles') {
+      this.getList('Consoles Xbox');
+    } else if (this.itemType === 'Xbox Games') {
+      this.getList('Games Xbox');
+    }
 
 
   }
@@ -85,110 +87,20 @@ export class ItemsdisplayComponent implements OnInit {
       this.paginationSize = '';
     }
   }
-  getXboxGamesList() {
-    this.itemsService.getXboxGamesList().subscribe((data: Item[]) => {
+  getList(argSubcategory: string) {
+    this.itemsService.getItemList(argSubcategory).subscribe((data: Item[]) => {
       data.map(info => {
         info.FilteredFeatures = this.formatFeatures(info.Features);
       });
-      this.listOfItems = data;
+      this.listOfItems = this.quickSortTwo(data, 'Price:Low');
       this.totalItems = data.length;
-      this.sortedListOfItems = data.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+      this.sortedListOfItems = this.listOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
 
 
     });
   }
-  
-  getXboxConsolesList() {
-    this.itemsService.getXboxConsolesList().subscribe((data: Item[]) => {
-      data.map(info => {
-        info.FilteredFeatures = this.formatFeatures(info.Features);
-      });
-      this.listOfItems = data;
-      this.totalItems = data.length;
-      this.sortedListOfItems = data.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
 
 
-    });
-  }
-  getPlayStationGamesList() {
-    this.itemsService.getPlaystationGamesList().subscribe((data: Item[]) => {
-      data.map(info => {
-        info.FilteredFeatures = this.formatFeatures(info.Features);
-      });
-      this.listOfItems = data;
-      this.totalItems = data.length;
-      this.sortedListOfItems = data.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
-
-
-    });
-  }
-  
-  getPlayStationConsolesList() {
-    this.itemsService.getPlaystationConsolesList().subscribe((data: Item[]) => {
-      data.map(info => {
-        info.FilteredFeatures = this.formatFeatures(info.Features);
-      });
-      this.listOfItems = data;
-      this.totalItems = data.length;
-      this.sortedListOfItems = data.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
-
-
-    });
-  }
-  getDesktopList() {
-    this.itemsService.getDesktopList().subscribe((data: Item[]) => {
-      data.map(info => {
-        info.FilteredFeatures = this.formatFeatures(info.Features);
-      });
-      this.listOfItems = data;
-      this.totalItems = data.length;
-      this.sortedListOfItems = data.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
-
-
-    });
-  }
-  getPcGameList() {
-    this.itemsService.getPcGameList().subscribe((data: Item[]) => {
-      data.map(info => {
-        info.FilteredFeatures = this.formatFeatures(info.Features);
-      });
-      this.listOfItems = data;
-      this.totalItems = data.length;
-      this.sortedListOfItems = data.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
-
-
-    });
-  };
-  getComputerItems() {
-    this.itemsService.getComputers().subscribe((data: Item[]) => {
-      data.map(info => {
-        info.FilteredFeatures = this.formatFeatures(info.Features);
-      });
-      this.listOfItems = data;
-
-      // tslint:disable-next-line:radix
-      this.totalItems = data.length;
-      this.sortedListOfItems = data.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
-
-
-    });
-
-  }
-  getXboxConsoles() {
-    this.itemsService.getXboxConsoles().subscribe((data: Item[]) => {
-      data.map(info => {
-        info.FilteredFeatures = this.formatFeatures(info.Features);
-      });
-      this.listOfItems = data;
-
-      // tslint:disable-next-line:radix
-      this.totalItems = data.length;
-      this.sortedListOfItems = data.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
-
-
-    });
-
-  }
   getPage() {
 
     console.log(this.pageNumber);
@@ -210,4 +122,84 @@ export class ItemsdisplayComponent implements OnInit {
 
     return sortedArray;
   }
+
+  swap(items, leftIndex, rightIndex) {
+    let temp = items[leftIndex];
+    items[leftIndex] = items[rightIndex];
+    items[rightIndex] = temp;
+  }
+  partition(items, left, right) {
+    let pivot = items[Math.floor((right + left) / 2)].Price; // middle element
+    let i = left; // left pointer
+    let j = right; // right pointer
+    while (i <= j) {
+      while (items[i].Price < pivot) {
+        i++;
+      }
+      while (items[j].Price > pivot) {
+        j--;
+      }
+      if (i <= j) {
+        this.swap(items, i, j); // sawpping two elements
+        i++;
+        j--;
+      }
+    }
+    return i;
+  }
+
+  quickSort(items, left, right) {
+    let index;
+    if (items.length > 1) {
+      index = this.partition(items, left, right); // index returned from partition
+
+      if (left < index - 1) { // more elements on the left side of the pivot
+        this.quickSort(items, left, index - 1);
+      }
+      if (index < right) { // more elements on the right side of the pivot
+        this.quickSort(items, index, right);
+      }
+    }
+    return items;
+  }
+
+  quickSortTwo(arr: Item[], sortBy = "Newest") {
+
+    //  if the array is less than or equal to 1 element return the array
+    if (arr.length <= 1) {
+
+      return arr;
+    }
+    //  set the pivot index number , value , and move all other items excluding the pivot to a variable called rest
+    // to pick the pivot we will get the mid item of the array 
+    // tslint:disable-next-line:radix
+    const pivotIndex = Math.floor((arr.length - 0) / 2);
+
+    const pivotValue = arr[pivotIndex];
+
+    const rest = arr.slice(0, pivotIndex).concat(arr.slice((pivotIndex + 1), arr.length));
+    //  initialize two empty arrays leftArr and rightArr 
+    // left array will hold all the items lower than the pivot value
+    // right will contain the items greater than the pivot value
+    const leftArr = [];
+    const rightArr = [];
+
+    // loop through the items to shift them to the array left or right  
+    rest.map((element: Item) => {
+      if (sortBy === 'Newest') {
+        element.DateAdded < pivotValue.DateAdded ? leftArr.push(element) : rightArr.push(element);
+      } else if ((sortBy === 'Price:Low')) {
+        element.Price < pivotValue.Price ? leftArr.push(element) : rightArr.push(element);
+      } else if ((sortBy === 'Price:High')) {
+        element.Price > pivotValue.Price ? leftArr.push(element) : rightArr.push(element);
+      }
+    });
+
+    // call itself to recursively re arrange all items in the array the at the end when both sides are sorted concatenate all 3 sections 
+    // left + pivot + right and return the sorted array at the end
+    return this.quickSortTwo(leftArr).concat(pivotValue).concat(this.quickSortTwo(rightArr));
+
+  }
+
+
 }

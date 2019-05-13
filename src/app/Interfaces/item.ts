@@ -10,4 +10,9 @@ export interface Item {
   FilteredFeatures: string [];
   Price: number;
   DateAdded: Date;
+  Category: string;
+  SubCategory: string;
+  StockQty: number;
+  ReviewsQty: number;
+  Rating: number ;
 }

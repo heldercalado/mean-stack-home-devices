@@ -19,7 +19,7 @@
 
     <div class="card h-100">
       <img class="card-img-top" src="{{item.ImgUrl}}" alt="Card image cap">
-      <div class="card-body ">
+      <div class="card-body h-100">
         <div class="row container-text">
           <div class="col-md-12 mx-auto">
             <img src="{{item.BrandImgUrl}}">
@@ -30,9 +30,9 @@
                 </span>
               </ng-template>
 
-              <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+              <ngb-rating [rate]="item.Rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
               <span class="reviews-quantity">
-                <a routerLink="">{{reviewsQuantity}}</a>
+                <a routerLink="">{{item.ReviewsQty}}</a>
               </span>
             </p>
             <ngb-tabset>
@@ -57,7 +57,7 @@
 
           </div>
         </div>
-        <div class="row container-price">
+        <div class="row container-price mt-2">
           <div class="col-sm-12">
             <p class="card-text"><b>{{item.Price | currency}}</b></p>
           </div>

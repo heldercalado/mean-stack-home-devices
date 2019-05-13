@@ -24,7 +24,7 @@ export class CarouselComponent implements OnInit {
     this.getItemList();
   }
   getItemList() {
-    this.itemService.getComputers().subscribe((data: Item[]) => {
+    this.itemService.getItemList('Desktop PC').subscribe((data: Item[]) => {
       this.itemList = data;
 
     });
