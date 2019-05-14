@@ -27,6 +27,7 @@ import { PlaystationconsolesComponent } from './Components/playstationconsoles/p
 import { DesktopsComponent } from './Components/desktops/desktops.component';
 import { LaptopsComponent } from './Components/laptops/laptops.component';
 import { ComputergamesComponent } from './Components/computergames/computergames.component';
+import { FilterComponent } from './Components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ComputergamesComponent } from './Components/computergames/computergames
     PlaystationconsolesComponent,
     DesktopsComponent,
     LaptopsComponent,
-    ComputergamesComponent
+    ComputergamesComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

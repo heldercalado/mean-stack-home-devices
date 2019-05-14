@@ -102,12 +102,7 @@ export class ItemsdisplayComponent implements OnInit {
 
 
   getPage() {
-
-    console.log(this.pageNumber);
     let number = (this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage;
-    console.log(number);
-    console.log(this.ItemsPerPage);
-    console.log(this.listOfItems.length);
     this.sortedListOfItems = this.listOfItems.slice(number, this.ItemsPerPage * this.pageNumber);
     console.log(this.sortedListOfItems);
   }

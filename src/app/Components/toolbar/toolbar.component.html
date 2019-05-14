@@ -57,74 +57,7 @@
                 </div>
             </div>
       </li>
-      <li class="nav-item">
-        <div class="row">
-          <div class="col">
-              <div ngbDropdown class="d-inline-block" autoClose="outside">
-                  <a class="btn nav-link dropdown-toggle text-white" id="dropdownfilter" ngbDropdownToggle><i class="fas fa-filter"></i>Filter</a>
-                  <div ngbDropdownMenu aria-labelledby="dropdownfilter" class="dropdown-background" >
-                      <form class="py-2 px-2 text-white">
-                          <div class="form-group">
-                            <div class="row">
-                              <div class="col-sm-7">
-                                  <label for="itemsperpage">Items Per Page:</label>
-                              </div>
-                              <div class="col-sm-5">
-                                  <select class="custom-select" class="form-control" id="itemsperpage" #items (change)=(setItemsPerPage(items.value))>
-                                      <option value=20 selected>20</option>
-                                      <option value=30>30</option>
-                                      <option value=40>40</option>
-                                      <option value=50>50</option>
-                                    </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="dropdown-divider"></div>
-                           <div class="form-group">
-                             <div class="row">
-                               <div class="col-sm-3">
-                                  <label for="sortby">Sort:</label>
-                                  
-                               </div>
-                               <div class="col">
-                                  <select class="custom-select" class="form-control" id="sortby">
-                                      <option selected>Newest</option>
-                                      <option value="1">One</option>
-                                      <option value="2">Two</option>
-                                      <option value="3">Three</option>
-                                    </select>
-                               </div>
-                             </div>
-                            
-                            
-                          </div>
-                          <div class="dropdown-divider"></div>
-                          <div class="form-group">
-                            <div class="row">
-                              <div class="col-sm-12">
-                                  <label for="searchinresults">Search in results</label>
-                              </div>
-                            </div>
-                              <div class="row">
-                                <div class="col-sm-9 pr-0">
-                                   <input type="text" name="" id="searchinresults" class="form-control">
-                                   
-                                </div>
-                                <div class="col-sm-3 px-0">
-                                   <button class="btn"><i class="fas fa-search"></i></button>
-                                </div>
-                              </div>
-                             
-                             
-                           </div>
-                          
-                        </form>
-                    </div>
-                </div>
-          </div>
-        </div>
-          
-      </li>
+      
       
       <li class="nav-item" *ngIf="pageName != 'Home'">
         <a class="nav-link text-white" routerLink="" (click)="changeToolbarState()">Home</a>

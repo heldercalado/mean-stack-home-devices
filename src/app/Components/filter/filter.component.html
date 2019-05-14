@@ -1,0 +1,43 @@
+<form class="form-row border mt-1">
+      <!-- col 1 -->
+      <div class="col-md-auto mb-3">
+          <label class="" for="itemsperpage">Items Per Page:</label>
+          <select class="custom-select my-1 mr-sm-2" class="form-control" id="itemsperpage" #items
+            (change)=(setItemsPerPage(items.value))>
+            <option value=20 selected>20</option>
+            <option value=30>30</option>
+            <option value=40>40</option>
+            <option value=50>50</option>
+          </select>
+      </div>
+      
+      <!-- col 2  -->
+      <div class="col-md-3 mb-3">
+          <label class=""  for="sortby">Sort By: </label>
+          <select class="custom-select my-1 mr-sm-2" class="form-control" id="sortby">
+            <option selected>Newest</option>
+            <option value="1">Reviews</option>
+            <option value="2">Price: Low -> High</option>
+            <option value="3">Price: High -> Low</option>
+          </select>
+
+      </div>
+      
+      <!-- col 3 -->
+      <div class="form-group col-md-7 w-100 mb-3">
+          <label class="" for="searchinresults">Search in results</label>
+          <div class="row">
+              <div class="col-md-8">
+                  <input type="text" name="" id="searchinresults" class="form-control w-100 mb-3">
+              </div>
+              <div class="col-md-4 justify-content-around">
+                
+                      <button type="button" class="btn btn-primary">Go</button>
+                      <button type="button" class="btn btn-primary mx-2">Reset</button>
+                   
+                
+              </div>
+          </div>
+      </div>
+     <!-- end of col 3 -->
+</form>
