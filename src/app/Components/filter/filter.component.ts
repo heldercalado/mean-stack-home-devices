@@ -9,6 +9,7 @@ import {EventMessage} from 'src/app/Services/communication.service';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
+  type = 'light';
   isNavbarCollapsed = true;
   outPutEmit: EventMessage ={
     Type: 'itemsPerPage',

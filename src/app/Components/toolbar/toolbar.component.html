@@ -19,7 +19,7 @@
                     <img src="http://icons.iconarchive.com/icons/martz90/circle-addon1/48/xbox-icon.png" class="menu-icon" alt="" >
                   XBOX Systems</a>
                 <div class="dropdown-divider"></div>
-                <a ngbDropdownItem class="btn nav-link" routerLink="/playstationconsoles">
+                <a ngbDropdownItem class="btn nav-link" routerLink="/playstationconsoles" (click)="changeToolbarState()">
                     <img src="http://www.iconarchive.com/download/i76049/martz90/circle-addon2/playstation.ico" class="menu-icon" alt="">
                   PlayStation Systems</a>
                 </div>
@@ -33,11 +33,11 @@
                     <img src="http://icons.iconarchive.com/icons/martz90/circle-addon1/48/xbox-icon.png" class="menu-icon" alt="">
                   XBOX Games</a>
                 <div class="dropdown-divider"></div>
-                <a ngbDropdownItem class="btn nav-link" routerLink="/playstationgames">
+                <a ngbDropdownItem class="btn nav-link" routerLink="/playstationgames" (click)="changeToolbarState()">
                     <img src="http://www.iconarchive.com/download/i76049/martz90/circle-addon2/playstation.ico" class="menu-icon" alt=""> 
                 PlayStation Games</a>
                 <div class="dropdown-divider"></div>
-                <a ngbDropdownItem class="btn nav-link" routerLink="/computergames">
+                <a ngbDropdownItem class="btn nav-link" routerLink="/computergames" (click)="changeToolbarState()">
                     <img src="http://icons.iconarchive.com/icons/jommans/emluator/48/My-Computer-icon.png" class="menu-icon" alt="">
                   Computer Games</a>
                 </div>
@@ -51,7 +51,7 @@
                   <img src="http://icons.iconarchive.com/icons/jommans/emluator/48/My-Computer-icon.png" class="menu-icon" alt="">
                   Desktop Systems</a>
                 <div class="dropdown-divider"></div>
-                <a ngbDropdownItem class="btn nav-link" routerLink="/laptopcomputers">
+                <a ngbDropdownItem class="btn nav-link" routerLink="/laptopcomputers" (click)="changeToolbarState()">
                     <img src="http://icons.iconarchive.com/icons/media-design/hydropro-v2/48/Laptop-icon.png" class="menu-icon" alt="">
                   Laptop / NoteBook Systems</a>
                 </div>
