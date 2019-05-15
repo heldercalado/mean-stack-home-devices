@@ -32,6 +32,8 @@ export class ItemsdisplayComponent implements OnInit {
   ItemsPerPage = 20;
   SortBy: string;
   SearchKeyWord: string;
+  originalListOfItems: Item[];
+  currentlListOfItems: Item[];
   listOfItems: Item[];
   sortedListOfItems: Item[];
   itemList: Item[] = [];
@@ -44,16 +46,23 @@ export class ItemsdisplayComponent implements OnInit {
   currentWindowWidth: number;
   constructor(private comm: CommunicationService, private itemsService: ItemsService) { }
 
+  // back up
+  // this.currentWindowWidth = window.innerWidth;
+  // console.log(this.currentWindowWidth);
+  // this.setPaginationSize();
+  // this.comm.itemsPerPage.subscribe((data: EventMessage) => {
+  //   this.pageNumber = 1;
+  //   this.ItemsPerPage = data.Value;
+
+
+  // });
+  // end of backup
+
+
+
+
   ngOnInit() {
-    this.currentWindowWidth = window.innerWidth;
-    console.log(this.currentWindowWidth);
-    this.setPaginationSize();
-    this.comm.itemsPerPage.subscribe((data: EventMessage) => {
-      this.pageNumber = 1;
-      this.ItemsPerPage = data.Value;
 
-
-    });
     if (this.itemType === 'Computer') {
       this.getList('Consoles PlayStation');
     } else if (this.itemType === 'Consoles') {
@@ -92,18 +101,86 @@ export class ItemsdisplayComponent implements OnInit {
       data.map(info => {
         info.FilteredFeatures = this.formatFeatures(info.Features);
       });
-      this.listOfItems = this.quickSortTwo(data, 'Price:Low');
-      this.totalItems = data.length;
-      this.sortedListOfItems = this.listOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+      this.originalListOfItems = data;
+      this.totalItems = this.originalListOfItems.length;
+      // tslint:disable-next-line:max-line-length
+      this.sortedListOfItems = this.originalListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
 
 
     });
   }
+  setItemsPerPage(argEvent) {
+    console.log(argEvent);
+    this.ItemsPerPage = argEvent;
 
+  }
+  setSearchKey(argEvent) {
+    console.log('searchkey call: ' + argEvent);
+    if (argEvent !== '') {
+      this.SearchKeyWord = argEvent;
+      this.currentlListOfItems = this.originalListOfItems.filter(data => {
+        const keywordFoundInDescription = data.Description.indexOf(this.SearchKeyWord) !== -1;
+        const keywordFoundInBrandName = data.Brand.indexOf(this.SearchKeyWord) !== -1;
+        const keywordFoundInName = data.Name.indexOf(this.SearchKeyWord) !== -1;
+        const keywordFoundInFeatures = data.Features.indexOf(this.SearchKeyWord) !== -1;
+        if (keywordFoundInDescription || keywordFoundInBrandName || keywordFoundInName || keywordFoundInFeatures) {
+          return data;
+        }
+      });
+      this.pageNumber = 1;
+      this.totalItems = this.currentlListOfItems.length;
+      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+
+    }
+  }
+  setSortOrder(argEvent) {
+    console.log('Sort Order call: ' + argEvent);
+    if (this.SearchKeyWord === ''){
+    this.currentlListOfItems = this.originalListOfItems;
+    } else {
+      this.currentlListOfItems = this.currentlListOfItems;
+    }
+    console.log(this.currentlListOfItems.length);
+
+    if (argEvent === 'Newest') {
+
+      this.quickSort(this.currentlListOfItems, 0, this.currentlListOfItems.length - 1, 'Date');
+      this.pageNumber = 1;
+      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+    } else if (argEvent === 'Rating') {
+
+      this.quickSort(this.currentlListOfItems, 0, this.currentlListOfItems.length - 1, argEvent);
+      this.currentlListOfItems.reverse();
+      this.pageNumber = 1;
+      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+    } else if (argEvent === 'Price: Low -> High') {
+
+      this.quickSort(this.currentlListOfItems, 0, this.currentlListOfItems.length - 1, 'Price');
+      this.pageNumber = 1;
+      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+    } else if (argEvent === 'Price: High -> Low') {
+
+      this.quickSort(this.currentlListOfItems, 0, this.currentlListOfItems.length - 1, 'Price');
+      this.currentlListOfItems.reverse();
+      this.pageNumber = 1;
+      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+    } else if (argEvent === 'Reviews') {
+
+      this.quickSort(this.currentlListOfItems, 0, this.currentlListOfItems.length - 1, 'ReviewsQty');
+      this.currentlListOfItems.reverse();
+      this.pageNumber = 1;
+      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+    }
+
+  }
+  resetFilterList(argEvent) {
+    console.log(argEvent);
+    argEvent ? this.ngOnInit() : null;
+  }
 
   getPage() {
-    let number = (this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage;
-    this.sortedListOfItems = this.listOfItems.slice(number, this.ItemsPerPage * this.pageNumber);
+    const pageNumber = (this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage;
+    this.sortedListOfItems = this.currentlListOfItems.slice(pageNumber, this.ItemsPerPage * this.pageNumber);
     console.log(this.sortedListOfItems);
   }
 
@@ -119,19 +196,19 @@ export class ItemsdisplayComponent implements OnInit {
   }
 
   swap(items, leftIndex, rightIndex) {
-    let temp = items[leftIndex];
+    const temp = items[leftIndex];
     items[leftIndex] = items[rightIndex];
     items[rightIndex] = temp;
   }
-  partition(items, left, right) {
-    let pivot = items[Math.floor((right + left) / 2)].Price; // middle element
+  partition(items, left, right, sortByKey) {
+    const pivot = items[Math.floor((right + left) / 2)][sortByKey]; // middle element
     let i = left; // left pointer
     let j = right; // right pointer
     while (i <= j) {
-      while (items[i].Price < pivot) {
+      while (items[i][sortByKey] < pivot) {
         i++;
       }
-      while (items[j].Price > pivot) {
+      while (items[j][sortByKey] > pivot) {
         j--;
       }
       if (i <= j) {
@@ -143,58 +220,22 @@ export class ItemsdisplayComponent implements OnInit {
     return i;
   }
 
-  quickSort(items, left, right) {
+  quickSort(items: Item[], left: number, right: number, sortBykey: string) {
     let index;
     if (items.length > 1) {
-      index = this.partition(items, left, right); // index returned from partition
+      index = this.partition(items, left, right, sortBykey); // index returned from partition
 
       if (left < index - 1) { // more elements on the left side of the pivot
-        this.quickSort(items, left, index - 1);
+        this.quickSort(items, left, index - 1, sortBykey);
       }
       if (index < right) { // more elements on the right side of the pivot
-        this.quickSort(items, index, right);
+        this.quickSort(items, index, right, sortBykey);
       }
     }
     return items;
   }
 
-  quickSortTwo(arr: Item[], sortBy = "Newest") {
 
-    //  if the array is less than or equal to 1 element return the array
-    if (arr.length <= 1) {
-
-      return arr;
-    }
-    //  set the pivot index number , value , and move all other items excluding the pivot to a variable called rest
-    // to pick the pivot we will get the mid item of the array 
-    // tslint:disable-next-line:radix
-    const pivotIndex = Math.floor((arr.length - 0) / 2);
-
-    const pivotValue = arr[pivotIndex];
-
-    const rest = arr.slice(0, pivotIndex).concat(arr.slice((pivotIndex + 1), arr.length));
-    //  initialize two empty arrays leftArr and rightArr 
-    // left array will hold all the items lower than the pivot value
-    // right will contain the items greater than the pivot value
-    const leftArr = [];
-    const rightArr = [];
-
-    // loop through the items to shift them to the array left or right  
-    rest.map((element: Item) => {
-      if (sortBy === 'Newest') {
-        element.DateAdded < pivotValue.DateAdded ? leftArr.push(element) : rightArr.push(element);
-      } else if ((sortBy === 'Price:Low')) {
-        element.Price < pivotValue.Price ? leftArr.push(element) : rightArr.push(element);
-      } else if ((sortBy === 'Price:High')) {
-        element.Price > pivotValue.Price ? leftArr.push(element) : rightArr.push(element);
-      }
-    });
-
-    // call itself to recursively re arrange all items in the array the at the end when both sides are sorted concatenate all 3 sections 
-    // left + pivot + right and return the sorted array at the end
-    return this.quickSortTwo(leftArr).concat(pivotValue).concat(this.quickSortTwo(rightArr));
-
-  }
 
 
 }

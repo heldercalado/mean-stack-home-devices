@@ -17,11 +17,13 @@
               <!-- col 2  -->
               <div class="col-md-3 mb-3">
                   <label class=""  for="sortby">Sort By: </label>
-                  <select class="custom-select my-1 mr-sm-2" class="form-control" id="sortby">
+                  <select class="custom-select my-1 mr-sm-2" #sortorder class="form-control" id="sortby"
+                  (change)=(setSortByQuery(sortorder.value))>
                     <option selected>Newest</option>
-                    <option value="1">Reviews</option>
-                    <option value="2">Price: Low -> High</option>
-                    <option value="3">Price: High -> Low</option>
+                    <option value="Reviews">Reviews</option>
+                    <option value="Rating">Rating</option>
+                    <option value="Price: Low -> High">Price: Low -> High</option>
+                    <option value="Price: High -> Low">Price: High -> Low</option>
                   </select>
         
               </div>
@@ -31,12 +33,17 @@
                   <label class="" for="searchinresults">Search in results</label>
                   <div class="row">
                       <div class="col-md-8">
-                          <input type="text" name="" id="searchinresults" class="form-control w-100 mb-3">
+                          <input type="text" #keyword id="searchinresults" class="form-control w-100 mb-3" required>
+                          <small *ngIf="validSearch == false">
+                              <ngb-alert [dismissible]="false">
+                                  <strong>Warning!</strong> Invalid Search String.
+                                </ngb-alert>
+                          </small>
                       </div>
                       <div class="col-md-4 justify-content-around">
                         
-                              <button type="button" class="btn btn-primary">Go</button>
-                              <button type="button" class="btn btn-primary mx-2">Reset</button>
+                              <button type="button" class="btn btn-primary" (click)="setSearchString(keyword.value)">Go</button>
+                              <button type="button" class="btn btn-primary mx-2" (click)="resetFilter(keyword ,sortorder ,items )">Reset</button>
                            
                         
                       </div>

@@ -1,6 +1,12 @@
 <div class="container">
   
-      <app-filter></app-filter>
+      <app-filter 
+        (ItemsPerPage)="setItemsPerPage($event)"
+        (SearchParams)="setSearchKey($event)"
+        (SortBY)="setSortOrder($event)"
+        (ResetFilter)="resetFilterList($event)"
+      >
+      </app-filter>
   
   
 
