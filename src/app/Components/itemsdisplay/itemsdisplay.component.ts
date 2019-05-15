@@ -115,6 +115,7 @@ export class ItemsdisplayComponent implements OnInit {
 
   }
   setSearchKey(argEvent) {
+    this.SearchKeyWord = argEvent ;
     console.log('searchkey call: ' + argEvent);
     if (argEvent !== '') {
       this.SearchKeyWord = argEvent;
@@ -135,7 +136,7 @@ export class ItemsdisplayComponent implements OnInit {
   }
   setSortOrder(argEvent) {
     console.log('Sort Order call: ' + argEvent);
-    if (this.SearchKeyWord === ''){
+    if (this.SearchKeyWord === '') {
     this.currentlListOfItems = this.originalListOfItems;
     } else {
       this.currentlListOfItems = this.currentlListOfItems;
