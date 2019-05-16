@@ -23,9 +23,9 @@ export class FilterComponent implements OnInit {
   constructor(private comm: CommunicationService) { }
 
   ngOnInit() {
-    this.ItemsPerPage.emit(20);
-    // this.SortBY.emit('Newest');
-    this.SearchParams.emit('');
+
+
+
   }
   setItemsPerPage(argValue) {
 
@@ -43,6 +43,8 @@ export class FilterComponent implements OnInit {
       this.validSearch = true;
     } else {
       this.validSearch = false;
+      setTimeout(() => this.validSearch = true, 2000);
+
     }
 
 

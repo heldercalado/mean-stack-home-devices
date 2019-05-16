@@ -31,7 +31,7 @@ export class ItemsdisplayComponent implements OnInit {
   @Input() itemType: string;
   ItemsPerPage = 20;
   SortBy: string;
-  SearchKeyWord: string;
+  SearchKeyWord = '';
   originalListOfItems: Item[];
   currentlListOfItems: Item[];
   listOfItems: Item[];
@@ -63,12 +63,13 @@ export class ItemsdisplayComponent implements OnInit {
 
   ngOnInit() {
 
+
     if (this.itemType === 'Computer') {
-      this.getList('Consoles PlayStation');
+
     } else if (this.itemType === 'Consoles') {
-      this.getList('Consoles PlayStation');
+
     } else if (this.itemType === 'Computer') {
-      this.getList('Consoles PlayStation');
+
     } else if (this.itemType === 'Desktop Systems') {
       this.getList('Desktop PC');
     } else if (this.itemType === 'Laptop Systems') {
@@ -102,86 +103,90 @@ export class ItemsdisplayComponent implements OnInit {
         info.FilteredFeatures = this.formatFeatures(info.Features);
       });
       this.originalListOfItems = data;
-      this.totalItems = this.originalListOfItems.length;
-      // tslint:disable-next-line:max-line-length
-      this.sortedListOfItems = this.originalListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+      this.currentlListOfItems = data;
+      this.updateList();
+
 
 
     });
   }
-  setItemsPerPage(argEvent) {
-    console.log(argEvent);
-    this.ItemsPerPage = argEvent;
+  updateList() {
+    this.pageNumber = 1;
+    this.totalItems = this.currentlListOfItems.length;
+    this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
 
   }
+  setItemsPerPage(argEvent) {
+
+    this.ItemsPerPage = argEvent;
+    this.updateList();
+  }
   setSearchKey(argEvent) {
-    this.SearchKeyWord = argEvent ;
+    this.SearchKeyWord = argEvent;
     console.log('searchkey call: ' + argEvent);
     if (argEvent !== '') {
       this.SearchKeyWord = argEvent;
       this.currentlListOfItems = this.originalListOfItems.filter(data => {
-        const keywordFoundInDescription = data.Description.indexOf(this.SearchKeyWord) !== -1;
-        const keywordFoundInBrandName = data.Brand.indexOf(this.SearchKeyWord) !== -1;
-        const keywordFoundInName = data.Name.indexOf(this.SearchKeyWord) !== -1;
-        const keywordFoundInFeatures = data.Features.indexOf(this.SearchKeyWord) !== -1;
+        const keywordFoundInDescription = data.Description.toLowerCase().indexOf(this.SearchKeyWord.toLowerCase()) !== -1;
+        const keywordFoundInBrandName = data.Brand.toLowerCase().indexOf(this.SearchKeyWord.toLowerCase()) !== -1;
+        const keywordFoundInName = data.Name.toLowerCase().indexOf(this.SearchKeyWord.toLowerCase()) !== -1;
+        const keywordFoundInFeatures = data.Features.toLowerCase().indexOf(this.SearchKeyWord.toLowerCase()) !== -1;
         if (keywordFoundInDescription || keywordFoundInBrandName || keywordFoundInName || keywordFoundInFeatures) {
           return data;
         }
       });
-      this.pageNumber = 1;
-      this.totalItems = this.currentlListOfItems.length;
-      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+      console.log('Results from search: ' + this.currentlListOfItems.length);
+      this.updateList();
+
 
     }
   }
   setSortOrder(argEvent) {
     console.log('Sort Order call: ' + argEvent);
     if (this.SearchKeyWord === '') {
-    this.currentlListOfItems = this.originalListOfItems;
-    } else {
-      this.currentlListOfItems = this.currentlListOfItems;
+      this.currentlListOfItems = this.originalListOfItems;
     }
     console.log(this.currentlListOfItems.length);
 
     if (argEvent === 'Newest') {
 
       this.quickSort(this.currentlListOfItems, 0, this.currentlListOfItems.length - 1, 'Date');
-      this.pageNumber = 1;
-      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+      this.updateList();
     } else if (argEvent === 'Rating') {
 
       this.quickSort(this.currentlListOfItems, 0, this.currentlListOfItems.length - 1, argEvent);
       this.currentlListOfItems.reverse();
-      this.pageNumber = 1;
-      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+      this.updateList();
     } else if (argEvent === 'Price: Low -> High') {
 
       this.quickSort(this.currentlListOfItems, 0, this.currentlListOfItems.length - 1, 'Price');
-      this.pageNumber = 1;
-      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+      this.updateList();
+
     } else if (argEvent === 'Price: High -> Low') {
 
       this.quickSort(this.currentlListOfItems, 0, this.currentlListOfItems.length - 1, 'Price');
       this.currentlListOfItems.reverse();
-      this.pageNumber = 1;
-      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+      this.updateList();
+
     } else if (argEvent === 'Reviews') {
 
       this.quickSort(this.currentlListOfItems, 0, this.currentlListOfItems.length - 1, 'ReviewsQty');
       this.currentlListOfItems.reverse();
-      this.pageNumber = 1;
-      this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
+      this.updateList();
+
     }
 
   }
   resetFilterList(argEvent) {
     console.log(argEvent);
-    argEvent ? this.ngOnInit() : null;
+    this.ItemsPerPage = 20;
+    this.SearchKeyWord = '';
+    this.ngOnInit();
   }
 
   getPage() {
     const pageNumber = (this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage;
-    this.sortedListOfItems = this.currentlListOfItems.slice(pageNumber, this.ItemsPerPage * this.pageNumber);
+    this.sortedListOfItems = this.originalListOfItems.slice(pageNumber, this.ItemsPerPage * this.pageNumber);
     console.log(this.sortedListOfItems);
   }
 
