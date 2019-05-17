@@ -1,11 +1,61 @@
-img {
-    width: 100%;
-    height: 51vh;
 
-}
 .btn {
     background-color: #659dbd;
     color:white;
 }
+.btn {
+    background-color: #659dbd;
+    color: white;
+  }
+  
+  .container-text {
+    height: 90%;
+  }
+  
+  .container-price {
+    height: 10%
+  }
+  
+  i {
+    margin-right: 5px;
+  }
+  
+  .reviews-quantity {
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+  .star {
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    color: #659dbd;
+  }
+  .full {
+    color: #daad86 ;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #daad86;
+  }
+  .pagination {}
+/* .carousel-indicators li { visibility: hidden; } */
 
-.carousel-indicators li { visibility: hidden; }
+[spacing] {
+    padding: 1rem;
+   background: #daad86;
+}
+.carousel-caption {
+    position: relative;
+    bottom: -100 ;
+    text-shadow: 0 1px 4px #659dbd !important;
+    
+}
+.card-header {
+    background:#659dbd;
+    color: white 
+}
+.card-img-top {
+height: 10rem;
+}

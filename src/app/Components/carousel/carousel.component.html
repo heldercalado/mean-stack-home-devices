@@ -1,19 +1,67 @@
 <div class="container">
-  <h2>Latest Items</h2>
-  <ngb-carousel *ngIf="images">
-    <ng-template ngbSlide *ngFor="let item of itemList">
-      <div class="card" >
-        <h5 class="card-title">{{item.Name}}</h5>
-        <img class="card-img-top" [src]="item.ImgUrl" alt="Card image cap">
-        <div class="card-body">
-          
-          <h5 class="card-title">{{item.Description}}</h5>
-          <p class="card-text">{{item.Price | currency}}</p>
-          <a href="#" class="btn">More Details</a>
+  <ng-template [ngIf]="doneLoading">
+    <div class="card" *ngFor="let subcategory of SubCategory">
+      <div class="card-header p-2">
+        <div class="row">
+          <div class="col">
+            <h2>Latest {{subcategory}}</h2>
+          </div>
+          <div class="col mx-auto">
+              <a class="btn btn-warning bg-warning" routerLink={{getRouterLinkFromSubCategory(subcategory)}} >View All Items</a>
+            </div>
+          <div class="col-auto mr-auto">
+            <ngb-pagination size='sm'   class="m-0 p-0"   [(page)]="page[subcategory]"  [pageSize]="itemsPerSlideA" [collectionSize]="itemsPerSlideA * slidesPerCarousel" (click)="changePage(page[subcategory] ,[(page)])"></ngb-pagination>
+          </div>
         </div>
+
       </div>
 
-    </ng-template>
+      <ngb-carousel [activeId]="page[subcategory]" spacing [showNavigationArrows]=false [showNavigationIndicators]=true>
+        <ng-template ngbSlide  *ngFor="let in of getKeys(subcategory)">
 
-  </ngb-carousel>
+          <div class="row">
+            <div class="col-sm  mt-sm-2" *ngFor="let item of getValues(subcategory , in)">
+              <div class="card h-100">
+                <img class="card-img-top" src="{{item.ImgUrl}}" alt="Card image cap">
+                <div class="card-body">
+                  <div class="row mx-0 px-0">
+                    <div class="col m-0 p-0 ml-auto">
+                      <ng-template #t let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">
+                          <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                        </span>
+                      </ng-template>
+                      <ngb-rating [rate]="item.Rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+                    </div>
+                    <div class="col m-0 p-0 mr-auto">
+                      <div class="reviews-quantity">
+                        <a routerLink="">({{item.ReviewsQty}})</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="height:70%">
+                    <div class="col">
+                      <p>{{item.Name}}...</p>
+                    </div>
+                  </div>
+
+                  <div class="row" style="height:20%;">
+                    <div class="col">
+                      <p class=""><b>{{item.Price | currency}}</b></p>
+                    </div>
+                  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-caption">
+
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </ng-template>
 </div>

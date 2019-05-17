@@ -13,6 +13,8 @@ export interface Message {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  subCategoryArray = ['Desktop PC', 'Laptop PC', 'Games PC', 'Consoles Xbox', 'Games Xbox', 'Consoles PlayStation', 'Games PlayStation']
+  showLatest: string ;
   emitMessage: EventMessage = {
     Type: 'pageName',
     Value: 'Home'
@@ -28,5 +30,9 @@ export class HomeComponent implements OnInit {
 
   }
 
-
+emitChanges(arg) {
+  
+  console.log('emit changes called');
+  this.showLatest = arg.path[0].childNodes[0].data;
+}
 }

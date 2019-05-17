@@ -17,7 +17,12 @@ router.get("/", function (req, res) {
 });
 router.get("/listitems/:subcategory", function (req, res) {
   console.log(req.params);
-query = {"SubCategory":req.params.subcategory}
+  if (req.params.subcategory != 'All'){
+    query = {"SubCategory":req.params.subcategory}
+  } else {
+    query = null;
+  }
+
   db.Items.find(query).sort({
     Date: -1
   }).then(data => {
