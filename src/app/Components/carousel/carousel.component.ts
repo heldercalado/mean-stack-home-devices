@@ -48,46 +48,7 @@ export class CarouselComponent implements OnInit {
 
     });
   }
-  sortData(argSubCategory) {
 
-    let itemCounter = 0;
-
-    let tempArray = this.itemList.filter(data => {
-      if (itemCounter < (this.itemsPerSlideA * this.slidesPerCarousel)) {
-        if (data.SubCategory === argSubCategory) {
-          itemCounter += 1;
-          return data;
-
-        }
-      }
-
-    });
-    let myObject = {};
-
-    myObject[argSubCategory] = [];
-    this.items[argSubCategory] = []
-    for (let index = 0; index < this.slidesPerCarousel; index++) {
-      const element = 'slide' + index;
-      myObject[argSubCategory][element] = [];
-    }
-
-    for (let index = 0; index < tempArray.length; index++) {
-      const element = tempArray[index];
-      const SlideIndex = Math.floor(index / this.slidesPerCarousel)
-      const keyName = 'slide' + SlideIndex;
-      myObject[argSubCategory][keyName].push(element);
-
-
-    }
-
-    // console.log(myObject);
-    // console.log(Object.keys(myObject));
-    this.items[argSubCategory] = myObject[argSubCategory]
-
-    // while (slideCounter <= this.slidesPerCarousel) {
-
-    // }
-  }
   getKeys(argSubcategory) {
 
     return Object.keys(this.items[argSubcategory]);
@@ -98,7 +59,7 @@ export class CarouselComponent implements OnInit {
 
   }
   allItemsLoaded() {
-    if (Object.keys(this.items).length === 7) {
+    if (Object.keys(this.items).length === 9) {
       console.log('done');
 
       this.doneLoading = true;
@@ -144,6 +105,13 @@ export class CarouselComponent implements OnInit {
   }
   changePage(argPage, page) {
     console.log(page);
+    console.log(argPage);
+  }
+
+  getslide(category , event){
+    // console.log(category);
+    // console.log(event);
+    // this.page[category] = parseInt(event.current.split('-')[2])
   }
 
   getRouterLinkFromSubCategory(argSubCategory) {
@@ -162,6 +130,10 @@ export class CarouselComponent implements OnInit {
       return '/playstationconsoles';
     } else if (argSubCategory === 'Games PlayStation') {
       return '/playstationgames';
+    } else if (argSubCategory === 'Electronics Cell Phones') {
+      return '/cellphones';
+    } else if (argSubCategory === 'Electronics Tablets') {
+      return '/tablets';
     }
   }
 

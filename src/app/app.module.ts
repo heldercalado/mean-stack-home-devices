@@ -31,6 +31,7 @@ import { FilterComponent } from './Components/filter/filter.component';
 import { UserdashboardComponent } from './Components/userdashboard/userdashboard.component';
 import { CellphonesComponent } from './Components/cellphones/cellphones.component';
 import { TabletsComponent } from './Components/tablets/tablets.component';
+import { UsersidenavComponent } from './Components/usersidenav/usersidenav.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { TabletsComponent } from './Components/tablets/tablets.component';
     FilterComponent,
     UserdashboardComponent,
     CellphonesComponent,
-    TabletsComponent
+    TabletsComponent,
+    UsersidenavComponent
   ],
   imports: [
     BrowserModule,

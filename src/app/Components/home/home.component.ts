@@ -13,7 +13,7 @@ export interface Message {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  subCategoryArray = ['Desktop PC', 'Laptop PC', 'Games PC', 'Consoles Xbox', 'Games Xbox', 'Consoles PlayStation', 'Games PlayStation']
+  subCategoryArray = ['Desktop PC', 'Laptop PC', 'Games PC', 'Consoles Xbox', 'Games Xbox', 'Consoles PlayStation', 'Games PlayStation', "Electronics Cell Phones", 'Electronics Tablets'];
   showLatest: string ;
   emitMessage: EventMessage = {
     Type: 'pageName',

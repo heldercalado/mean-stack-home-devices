@@ -15,6 +15,7 @@ import { DesktopsComponent } from './Components/desktops/desktops.component';
 import { LaptopsComponent } from './Components/laptops/laptops.component';
 import { CellphonesComponent } from './Components/cellphones/cellphones.component';
 import { TabletsComponent } from './Components/tablets/tablets.component';
+import { UserdashboardComponent } from './Components/userdashboard/userdashboard.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'playstationgames', component: PlaystationgamesComponent },
   { path: 'cellphones', component: CellphonesComponent },
   { path: 'tablets', component: TabletsComponent },
+  { path: 'userdashboard', component: UserdashboardComponent },
 
 ];
 

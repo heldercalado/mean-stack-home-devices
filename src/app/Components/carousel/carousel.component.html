@@ -1,22 +1,20 @@
 <div class="container">
   <ng-template [ngIf]="doneLoading">
     <div class="card" *ngFor="let subcategory of SubCategory">
-      <div class="card-header p-2">
-        <div class="row">
-          <div class="col">
-            <h2>Latest {{subcategory}}</h2>
+      <div class="card-header w-100">
+        <div class="row w-100">
+          <div class="col-md-6">
+            <h3>Latest {{subcategory}}</h3>
           </div>
-          <div class="col mx-auto">
-              <a class="btn btn-warning bg-warning" routerLink={{getRouterLinkFromSubCategory(subcategory)}} >View All Items</a>
-            </div>
-          <div class="col-auto mr-auto">
-            <ngb-pagination size='sm'   class="m-0 p-0"   [(page)]="page[subcategory]"  [pageSize]="itemsPerSlideA" [collectionSize]="itemsPerSlideA * slidesPerCarousel" (click)="changePage(page[subcategory] ,[(page)])"></ngb-pagination>
+          
+          <div class="col-md-6 ">
+            <a class="btn btn-warning bg-warning float-right" routerLink={{getRouterLinkFromSubCategory(subcategory)}} >View All Items</a>
           </div>
         </div>
 
       </div>
 
-      <ngb-carousel [activeId]="page[subcategory]" spacing [showNavigationArrows]=false [showNavigationIndicators]=true>
+      <ngb-carousel [activeId]="page[subcategory]" (slide)="getslide(subcategory , $event)" spacing [showNavigationArrows]=false [showNavigationIndicators]=true>
         <ng-template ngbSlide  *ngFor="let in of getKeys(subcategory)">
 
           <div class="row">
