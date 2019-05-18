@@ -66,10 +66,10 @@ export class ItemsdisplayComponent implements OnInit {
 
     if (this.itemType === 'Computer') {
 
-    } else if (this.itemType === 'Consoles') {
-
-    } else if (this.itemType === 'Computer') {
-
+    } else if (this.itemType === 'Tablets') {
+      this.getList('Electronics Tablets');
+    } else if (this.itemType === 'Cell Phones') {
+      this.getList('Electronics Cell Phones');
     } else if (this.itemType === 'Desktop Systems') {
       this.getList('Desktop PC');
     } else if (this.itemType === 'Laptop Systems') {

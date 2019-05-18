@@ -28,6 +28,9 @@ import { DesktopsComponent } from './Components/desktops/desktops.component';
 import { LaptopsComponent } from './Components/laptops/laptops.component';
 import { ComputergamesComponent } from './Components/computergames/computergames.component';
 import { FilterComponent } from './Components/filter/filter.component';
+import { UserdashboardComponent } from './Components/userdashboard/userdashboard.component';
+import { CellphonesComponent } from './Components/cellphones/cellphones.component';
+import { TabletsComponent } from './Components/tablets/tablets.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { FilterComponent } from './Components/filter/filter.component';
     DesktopsComponent,
     LaptopsComponent,
     ComputergamesComponent,
-    FilterComponent
+    FilterComponent,
+    UserdashboardComponent,
+    CellphonesComponent,
+    TabletsComponent
   ],
   imports: [
     BrowserModule,

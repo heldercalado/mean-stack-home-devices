@@ -13,9 +13,8 @@ export class ComputergamesComponent implements OnInit {
     Type: 'pageName',
     Value: 'PC Games'
   };
-  itemList: Item[] = [];
-  currentRate = 3.2;
-  reviewsQuantity = '(200)';
+  
+  
   constructor(private itemsService: ItemsService, private comm: CommunicationService) { }
 
   ngOnInit() {

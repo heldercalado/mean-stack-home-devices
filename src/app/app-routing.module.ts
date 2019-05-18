@@ -13,6 +13,8 @@ import { PlaystationconsolesComponent } from './Components/playstationconsoles/p
 import { PlaystationgamesComponent } from './Components/playstationgames/playstationgames.component';
 import { DesktopsComponent } from './Components/desktops/desktops.component';
 import { LaptopsComponent } from './Components/laptops/laptops.component';
+import { CellphonesComponent } from './Components/cellphones/cellphones.component';
+import { TabletsComponent } from './Components/tablets/tablets.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path: 'xboxgames', component: XboxgamesComponent },
   { path: 'playstationconsoles', component: PlaystationconsolesComponent },
   { path: 'playstationgames', component: PlaystationgamesComponent },
+  { path: 'cellphones', component: CellphonesComponent },
+  { path: 'tablets', component: TabletsComponent },
 
 ];
 
