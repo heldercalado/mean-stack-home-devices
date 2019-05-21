@@ -32,6 +32,8 @@ import { UserdashboardComponent } from './Components/userdashboard/userdashboard
 import { CellphonesComponent } from './Components/cellphones/cellphones.component';
 import { TabletsComponent } from './Components/tablets/tablets.component';
 import { UsersidenavComponent } from './Components/usersidenav/usersidenav.component';
+import { UsermessagesComponent } from './Components/usermessages/usermessages.component';
+import { UserdashboardpanelComponent } from './Components/userdashboardpanel/userdashboardpanel.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { UsersidenavComponent } from './Components/usersidenav/usersidenav.compo
     UserdashboardComponent,
     CellphonesComponent,
     TabletsComponent,
-    UsersidenavComponent
+    UsersidenavComponent,
+    UsermessagesComponent,
+    UserdashboardpanelComponent
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,13 @@ export class ItemsService {
 
 
   }
+  getLatestItemList() {
+
+
+    return this.http.get(this.baseApiRoute + '/latestitems/');
+
+
+  }
 
 
 

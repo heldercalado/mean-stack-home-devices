@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./usersidenav.component.css']
 })
 export class UsersidenavComponent implements OnInit {
-
+isNavbarCollapsed = false ;
   constructor() { }
 
   ngOnInit() {

@@ -1,42 +1,56 @@
-<div class="col-2 collapse d-md-flex bg-light pt-2 min-vh-100" id="sidebar">
-<ul class="nav flex-column flex-nowrap">
-    <li class="nav-item"><a class="nav-link" href="#">Overview</a></li>
+<nav class="navbar navbar-expand-md navbar-dark m-0 p-0">
+
+  <button class="navbar-toggler hidden-sm-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
+    data-target="#usersidenav" aria-controls="usersidenav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse align-items-start" id="usersidenav">
+    <div class="card m-0 p-0 w-100">
+      <img class="rounded-circle border border-primary mx-auto"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb2gUvUVZlDxd4WGJ1q3nFM4kqg5nV8ZywIE5fb1cgweq53mx5lw"
+        alt="Card image cap">
+      <div class="card-body ">
+        <h5 class="card-title">User Name</h5>
+        <p class="card-text">Welcome Back!</p>
+      </div>
+      <div class="card-footer p-0  w-100">
+        
+          <ul class="navbar-nav flex-column mx-auto">
+            <li class="nav-item">
+              <a class="nav-link text-white active pl-1" href="#">Messages</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white pl-1" href="#">Orders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white pl-1" href="#">Settings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white pl-1" href="#">Reviewed Items</a>
+            </li>
+          
+        </ul>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+</nav>
+
+<!-- <ul class="navbar-nav flex-column  mx-auto">
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#submenu1" data-toggle="collapse" data-target="#submenu1">Reports</a>
-        <div class="collapse" id="submenu1" aria-expanded="false">
-            <ul class="flex-column pl-2 nav">
-                <li class="nav-item"><a class="nav-link py-0" href="#">Orders</a></li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed py-1" href="#submenu1sub1" data-toggle="collapse" data-target="#submenu1sub1">Customers</a>
-                    <div class="collapse" id="submenu1sub1" aria-expanded="false">
-                        <ul class="flex-column nav pl-4">
-                            <li class="nav-item">
-                                <a class="nav-link p-1" href="#">
-                                    <i class="fa fa-fw fa-clock-o"></i> Daily
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link p-1" href="#">
-                                    <i class="fa fa-fw fa-dashboard"></i> Dashboard
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link p-1" href="#">
-                                    <i class="fa fa-fw fa-bar-chart"></i> Charts
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link p-1" href="#">
-                                    <i class="fa fa-fw fa-compass"></i> Areas
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
+      <a class="nav-link text-white active" href="#">Messages</a>
     </li>
-    <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
-    <li class="nav-item"><a class="nav-link" href="#">Export</a></li>
-</ul>
-</div>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="#">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="#">Settings</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="#">Reviewed Items</a>
+    </li>
+  </ul> -->

@@ -40,7 +40,7 @@ export class CarouselComponent implements OnInit {
 
   }
   getItemList() {
-    this.itemService.getItemList('All').subscribe((data: Item[]) => {
+    this.itemService.getLatestItemList().subscribe((data: Item[]) => {
       this.itemList = data;
 
       this.newSort();

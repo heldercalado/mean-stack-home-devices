@@ -1,0 +1,32 @@
+.navbar {
+
+    background-color: #659dbd;
+}
+
+ul.nav {
+    background-color: #659dbd;
+    height: 100%;
+}
+
+.nav-link:hover {
+    color: #fbeec1!important;
+
+    text-shadow: 2px 2px 4px #000000;
+    
+}
+.nav-link {
+    color: white;
+   
+    
+}
+nav {
+    
+}
+.rounded-circle {
+    width: 8rem;
+    height:8rem;
+}
+.card-footer > ul {
+   background-color: #659dbd !important;
+   
+}
