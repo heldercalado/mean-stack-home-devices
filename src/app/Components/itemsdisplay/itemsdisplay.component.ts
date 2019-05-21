@@ -3,6 +3,7 @@ import { Item } from '../../Interfaces/item';
 import { CommunicationService } from 'src/app/Services/communication.service';
 import { ItemsService } from 'src/app/Services/items.service';
 import { EventMessage } from 'src/app/Services/communication.service';
+import { timer } from 'rxjs';
 
 
 @Component({
@@ -43,26 +44,19 @@ export class ItemsdisplayComponent implements OnInit {
   totalItems = 0;
   rotate = false;
   paginationSize = '';
+  timeoutVar: any;
   currentWindowWidth: number;
-  constructor(private comm: CommunicationService, private itemsService: ItemsService) { }
+  progressBarValue: number;
+  progressBarColor = 'info';
+  loadingResults: boolean = false;
+  constructor(private comm: CommunicationService, private itemsService: ItemsService) {
 
-  // back up
-  // this.currentWindowWidth = window.innerWidth;
-  // console.log(this.currentWindowWidth);
-  // this.setPaginationSize();
-  // this.comm.itemsPerPage.subscribe((data: EventMessage) => {
-  //   this.pageNumber = 1;
-  //   this.ItemsPerPage = data.Value;
-
-
-  // });
-  // end of backup
-
-
-
+  }
 
   ngOnInit() {
-
+    this.loadingResults = true;
+    this.progressBarValue = 0;
+    this.progressBarColor = 'danger';
 
     if (this.itemType === 'Computer') {
 
@@ -98,23 +92,32 @@ export class ItemsdisplayComponent implements OnInit {
     }
   }
   getList(argSubcategory: string) {
+    this.progressBarValue = 25;
+    this.progressBarColor = 'warning';
     this.itemsService.getItemList(argSubcategory).subscribe((data: Item[]) => {
       data.map(info => {
         info.FilteredFeatures = this.formatFeatures(info.Features);
+        this.progressBarValue = 50;
+        this.progressBarColor = 'info';
+        this.originalListOfItems = data;
+        this.currentlListOfItems = data;
+        this.updateList();
+
       });
-      this.originalListOfItems = data;
-      this.currentlListOfItems = data;
-      this.updateList();
 
 
 
     });
   }
+
   updateList() {
+    this.progressBarValue = 75;
     this.pageNumber = 1;
     this.totalItems = this.currentlListOfItems.length;
     this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
-
+    this.progressBarValue = 100;
+    this.progressBarColor = 'success';
+    this.loadingResults = false;
   }
   setItemsPerPage(argEvent) {
 

@@ -1,5 +1,13 @@
 <div class="container">
-  
+    
+      <div class="row mt-2" *ngIf="loadingResults">
+        <div class="col">
+            
+            <p><ngb-progressbar [type]="progressBarColor" [value]="progressBarValue"></ngb-progressbar></p>
+          </div>
+      </div>
+        
+    
       <app-filter 
         (ItemsPerPage)="setItemsPerPage($event)"
         (SearchParams)="setSearchKey($event)"
