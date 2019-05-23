@@ -13,20 +13,20 @@
         <h5 class="card-title">User Name</h5>
         <p class="card-text">Welcome Back!</p>
       </div>
-      <div class="card-footer p-0  w-100">
+      <div class="card-footer p-0  w-100 d-block d-sm-none">
         
           <ul class="navbar-nav flex-column mx-auto">
             <li class="nav-item">
-              <a class="nav-link text-white active pl-1" href="#">Messages</a>
+              <a class="nav-link text-white active pl-1" (click)="setOption('messages')">Messages</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white pl-1" href="#">Orders</a>
+              <a class="nav-link text-white pl-1" (click)="setOption('orders')">Orders</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white pl-1" href="#">Settings</a>
+              <a class="nav-link text-white pl-1" (click)="setOption('settings')">Settings</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white pl-1" href="#">Reviewed Items</a>
+              <a class="nav-link text-white pl-1" (click)="setOption('revieweditems')">Reviewed Items</a>
             </li>
           
         </ul>

@@ -3,15 +3,15 @@
 
 <div class="row justify-content-between ml-3">
   <div class="col-sm-3 d-none d-md-block">
-    <div class="card h-100 messages">
+    <div class="card h-100 messages" (click)="setOption('messages')">
 
       <div class="card-body">
-        <p class="card-text">Messages</p>
+        <p class="card-text" >Messages</p>
       </div>
     </div>
   </div>
   <div class="col-sm-3 d-none d-md-block">
-    <div class="card h-100 orders">
+    <div class="card h-100 orders" (click)="setOption('orders')">
 
       <div class="card-body">
         <p class="card-text">Orders</p>
@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="col-sm-3 d-none d-md-block">
-    <div class="card h-100 settings">
+    <div class="card h-100 settings" (click)="setOption('settings')">
 
       <div class="card-body">
         <p class="card-text">Settings</p>
@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="col-sm-3 d-none d-md-block">
-    <div class="card h-100 revieweditems">
+    <div class="card h-100 revieweditems" (click)="setOption('revieweditems')">
 
       <div class="card-body">
         <p class="card-text">Reviewed Items</p>
@@ -36,13 +36,21 @@
   </div>
 
 </div>
-<div class="row">
+<div class="row d-none d-md-block">
   <div class="col">
     <hr>
   </div>
 </div>
-<div class="row">
+<div class="row d-none d-md-block">
     <div class="col">
       <hr>
     </div>
   </div>
+<div class="row">
+  <div class="col">
+    <app-messages *ngIf="option === 'messages'"></app-messages>
+    <app-orders  *ngIf="option === 'orders'"></app-orders>
+    <app-settings  *ngIf="option === 'settings'"></app-settings>
+    <app-itemsreview  *ngIf="option === 'revieweditems'"></app-itemsreview>
+  </div>
+</div>

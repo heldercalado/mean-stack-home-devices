@@ -1,0 +1,16 @@
+td {
+    font-size: 1rem;
+}
+
+ .read {
+     font-weight: normal;
+
+ } 
+ .unread {
+    font-weight: bolder;
+
+} 
+  
+  .clickable:hover {
+      cursor: pointer;
+  }

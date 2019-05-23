@@ -34,6 +34,10 @@ import { TabletsComponent } from './Components/tablets/tablets.component';
 import { UsersidenavComponent } from './Components/usersidenav/usersidenav.component';
 import { UsermessagesComponent } from './Components/usermessages/usermessages.component';
 import { UserdashboardpanelComponent } from './Components/userdashboardpanel/userdashboardpanel.component';
+import { MessagesComponent } from './Components/messages/messages.component';
+import { OrdersComponent } from './Components/orders/orders.component';
+import { SettingsComponent } from './Components/settings/settings.component';
+import { ItemsreviewComponent } from './Components/itemsreview/itemsreview.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +66,11 @@ import { UserdashboardpanelComponent } from './Components/userdashboardpanel/use
     TabletsComponent,
     UsersidenavComponent,
     UsermessagesComponent,
-    UserdashboardpanelComponent
+    UserdashboardpanelComponent,
+    MessagesComponent,
+    OrdersComponent,
+    SettingsComponent,
+    ItemsreviewComponent
   ],
   imports: [
     BrowserModule,
