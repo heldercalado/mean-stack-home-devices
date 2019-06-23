@@ -1,77 +1,82 @@
-<div class="row">
-  <div class="col my-1">
-
-    <div *ngIf="messages.length > 0" class="custom-control custom-checkbox custom-control-inline">
-      <input type="checkbox" class="custom-control-input" [checked]="allMessagesSelected" id="selectall" (click)="selectAllMessages()">
-      <label class="custom-control-label h5" for="selectall">Select All</label>
-
-    </div>
-    <ng-template [ngIf]="messagesSelected" class="push-right">
-        <button class="btn btn-info" (click)="deleteMessages()"><i class="fas fa-trash-alt"></i></button>
-    </ng-template>
-    <div *ngIf="messages.length == 0" class="custom-control custom-checkbox custom-control-inline">
-        
-      <p class="text-center"><ngb-alert class="alert h4" [dismissible]=false >No Messages</ngb-alert></p>
-      </div>
-
-  </div>
-</div>
-
-<div class="row">
-  <div class="col border">
-    <table *ngIf="messages.length > 0" class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col-auto"></th>
-          <th scope="col-auto"></th>
-          <th scope="col-auto"></th>
-          <th scope="col-auto"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr  *ngFor="let msg of messages; let i = index">
-           
-            <td>
-              
-                <div class="custom-control custom-checkbox">
-                    <input  type="checkbox" class="custom-control-input"  id={{msg.Id}} value={{msg.Id}} [checked]="selectedMessages[i].selected"  (click)="getSelectedMessage(i)">
-                    <label class="custom-control-label" for={{msg.Id}}></label>
-                </div>
-             
-            </td>
-            <td>
-              <i [ngClass]="{'far':true ,'fa-envelope':msg.Read == false ,'fa-envelope-open':msg.Read == true}"></i>
-
-            </td>
-         
-
-          <td  id={{msg.Id}} [ngClass]="{'unread':msg.Read == false ,'read':msg.Read == true, 'clickable': true}" (click)="displayMessage(i)">{{ msg.Header | titlecase }}</td>
-
-          <td [ngClass]="{'unread':msg.Read == false ,'read':msg.Read == true, 'clickable': true}" (click)="displayMessage(i)">{{ msg.Date | date }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col border p-1">
-    <ng-template [ngIf]="currentMessageSet">
-      <div class="card h-100">
-        <div class="card-header m-0 p-0">
-          <div class="row m-0 p-0">
-            <div class="col  m-0 p-0">
-                <h5 class="text-muted" >{{currentMessage.Date | date}} </h5>
-            </div>
-            <div class="col- pull-right m-0 p-0">
-                <button type="button" (click)="hideMessage()" class="btn btn-info">x</button>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 my-1 pl-3">
+      
+          <div *ngIf="messages.length > 0" class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" class="custom-control-input" [checked]="allMessagesSelected" id="selectall" (click)="selectAllMessages()">
+            <label class="custom-control-label h5" for="selectall">Select All</label>
+      
           </div>
-         
-          <h4>{{currentMessage.Header}}</h4>
+          <ng-template [ngIf]="messagesSelected" class="push-right">
+              <button class="btn btn-info" (click)="deleteMessages()"><i class="fas fa-trash-alt"></i></button>
+          </ng-template>
+          <div *ngIf="messages.length == 0" class="custom-control custom-checkbox custom-control-inline">
+              
+            <p class="text-center"><ngb-alert class="alert h4" [dismissible]=false >No Messages</ngb-alert></p>
+            </div>
+      
         </div>
-        <div class="card-body">
-          <p class="card-text">{{currentMessage.Body}}</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-xs-6 border p-1">
+          <table *ngIf="messages.length > 0" class="table table-striped h-100">
+            <thead>
+              <tr>
+                <th scope="col-auto"></th>
+                <th scope="col-auto"></th>
+                <th scope="col-auto"></th>
+                <th scope="col-auto"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let msg of messages; let i = index">
+                 
+                  <td>
+                    
+                      <div class="custom-control custom-checkbox">
+                          <input  type="checkbox" class="custom-control-input"  id={{msg.Id}} value={{msg.Id}} [checked]="selectedMessages[i].selected"  (click)="getSelectedMessage(i)">
+                          <label class="custom-control-label" for={{msg.Id}}></label>
+                      </div>
+                   
+                  </td>
+                  <td>
+                    <i [ngClass]="{'far':true ,'fa-envelope':msg.Read == false ,'fa-envelope-open':msg.Read == true}"></i>
+      
+                  </td>
+               
+      
+                <td  id={{msg.Id}} [ngClass]="{'unread':msg.Read == false ,'read':msg.Read == true, 'clickable': true}" (click)="displayMessage(i)">{{ msg.Header | titlecase }}</td>
+      
+                <td [ngClass]="{'unread':msg.Read == false ,'read':msg.Read == true, 'clickable': true}" (click)="displayMessage(i)">{{ msg.Date | date }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col border p-1">
+          <ng-template [ngIf]="currentMessageSet">
+            <div class="card h-100">
+              <div class="card-header m-0 p-0">
+                <div class="row m-0 p-0">
+                  <div class="col  m-0 p-0">
+                      <h5 class="text-muted" >{{currentMessage.Date | date}} </h5>
+                  </div>
+                  <div class="col- pull-right m-0 p-0">
+                      <button type="button" (click)="hideMessage()" class="btn btn-info">x</button>
+                  </div>
+                </div>
+               
+                <h4>{{currentMessage.Header}}</h4>
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{currentMessage.Body}}</p>
+              </div>
+            </div>
+      
+          </ng-template>
         </div>
       </div>
 
-    </ng-template>
-  </div>
+
 </div>
+

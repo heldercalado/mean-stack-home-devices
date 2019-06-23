@@ -10,7 +10,7 @@ export class ItemsService {
 
 
   constructor(private http: HttpClient) { }
-  baseApiRoute = location.href.indexOf('http://localhost:4200/') !== -1 ? 'http://localhost:8080/api' : '/api';
+  baseApiRoute = location.href.indexOf('http://localhost:4200/') !== -1 ? 'http://localhost:8080/api/items' : '/api/items';
 
   getItemList(argItemSubCategory) {
 

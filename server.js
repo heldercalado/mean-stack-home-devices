@@ -3,6 +3,8 @@ var logger = require("morgan");
 const path = require('path');
 var mongoose = require("mongoose");
 var app = express();
+    
+require('dotenv').config()
 
 
 // Use morgan logger for logging requests
@@ -23,9 +25,12 @@ app.use(function(req, res, next) {
 
 // use the api routes
 
-let apiRoute = require ("./api/apiroute")
-app.use('/api' , apiRoute);
-
+// items api
+const apiRoute = require ("./api/itemsApi")
+app.use('/api/items' , apiRoute);
+// user api
+const userApi = require ("./api/userApi")
+app.use('/api/users' , userApi);
 // Create link to Angular build directory
 // Serve static files....
 app.use(express.static(__dirname + '/dist/mean-stack-home-devices'));
@@ -35,6 +40,7 @@ app.use(express.static(__dirname + '/dist/mean-stack-home-devices'));
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/devicesshops";
+mongoose.set('useCreateIndex', true);
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
   // Save database object from the callback for reuse.

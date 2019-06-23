@@ -19,7 +19,8 @@ export class AppComponent {
   SearchKeyWord = '';
   pageName = '';
   title = 'Tech 4 Less';
-
+  userLoggedIn = false;
+  userName: string;
 
   constructor(
     private comm: CommunicationService
@@ -49,6 +50,22 @@ export class AppComponent {
       text => {
         setTimeout(() => {
           this.SearchKeyWord = text;
+        }, 1);
+
+      });
+    this.comm.isUserLoggedIn.subscribe(
+      text => {
+        setTimeout(() => {
+
+          this.userLoggedIn = text.Value;
+        }, 1);
+
+      });
+    this.comm.userName.subscribe(
+      text => {
+        setTimeout(() => {
+          console.log("Name: " + text.Name);
+          this.userName = text.Name;
         }, 1);
 
       });

@@ -48,7 +48,7 @@ export class ItemsdisplayComponent implements OnInit {
   currentWindowWidth: number;
   progressBarValue: number;
   progressBarColor = 'info';
-  loadingResults: boolean = false;
+  loadingResults = false;
   constructor(private comm: CommunicationService, private itemsService: ItemsService) {
 
   }
@@ -92,13 +92,14 @@ export class ItemsdisplayComponent implements OnInit {
     }
   }
   getList(argSubcategory: string) {
-    this.progressBarValue = 25;
-    this.progressBarColor = 'warning';
+    this.progressBarValue = 100;
+    this.progressBarColor = 'success';
     this.itemsService.getItemList(argSubcategory).subscribe((data: Item[]) => {
       data.map(info => {
+
+
         info.FilteredFeatures = this.formatFeatures(info.Features);
-        this.progressBarValue = 50;
-        this.progressBarColor = 'info';
+
         this.originalListOfItems = data;
         this.currentlListOfItems = data;
         this.updateList();
@@ -111,12 +112,10 @@ export class ItemsdisplayComponent implements OnInit {
   }
 
   updateList() {
-    this.progressBarValue = 75;
-    this.pageNumber = 1;
+
     this.totalItems = this.currentlListOfItems.length;
     this.sortedListOfItems = this.currentlListOfItems.slice((this.pageNumber * this.ItemsPerPage) - this.ItemsPerPage, this.ItemsPerPage);
-    this.progressBarValue = 100;
-    this.progressBarColor = 'success';
+    
     this.loadingResults = false;
   }
   setItemsPerPage(argEvent) {
@@ -194,8 +193,10 @@ export class ItemsdisplayComponent implements OnInit {
   }
 
   formatFeatures(argString) {
+    
     const myArray = argString.split(',');
     let sortedArray = myArray.filter(data => {
+
       if (data.indexOf('Type') === -1 && data.indexOf('Usage') === -1 && data.indexOf('Return') === -1 && data.indexOf('Packaging') === -1) {
         return sortedArray += data + ',';
       }

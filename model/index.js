@@ -8,4 +8,7 @@ module.exports = {
     XboxGames: require("./Xboxgames"),
     PlayStationConsoles: require("./Playstationconsoles"),
     PlayStationGames: require("./Playstationgames"),
+    States: require('./States'),
+    Cities: require('./Cities'),
+    Users: require('./User'),
   };

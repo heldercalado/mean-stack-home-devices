@@ -7,6 +7,12 @@ import { AppComponent } from './app.component';
 // http client import for the services
 import { HttpClientModule } from '@angular/common/http';
 
+// custom pipe for phone number formatting
+import { PhonePipe } from 'src/app/pipe/phonepipe';
+
+// angular-jwt module
+import { JwtModule } from '@auth0/angular-jwt';
+
 // bootstrap module
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
@@ -38,6 +44,11 @@ import { MessagesComponent } from './Components/messages/messages.component';
 import { OrdersComponent } from './Components/orders/orders.component';
 import { SettingsComponent } from './Components/settings/settings.component';
 import { ItemsreviewComponent } from './Components/itemsreview/itemsreview.component';
+import { LoginComponent } from './Components/login/login.component';
+import { RegisterComponent } from './Components/register/register.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -70,13 +81,26 @@ import { ItemsreviewComponent } from './Components/itemsreview/itemsreview.compo
     MessagesComponent,
     OrdersComponent,
     SettingsComponent,
-    ItemsreviewComponent
+    ItemsreviewComponent,
+    PhonePipe,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function  tokenGetter() {
+             return     localStorage.getItem('access_token');},
+        whitelistedDomains: ['localhost:3000'],
+        blacklistedRoutes: ['http://localhost:3000/auth/login']
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

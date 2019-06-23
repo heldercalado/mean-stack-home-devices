@@ -87,7 +87,36 @@ router.get("/latestitems", function (req, res) {
   }
 
 });
+router.get('/liststates', function(req,res){
+  db.States.find()
+  .sort({name: 1})
+  .then(data =>{
+    console.log(data.length);
+    res.json(data);
+  })
 
+});
+router.get('/listcities/:state?', function(req,res){
+  query = req.params.state ? {state:req.params.state} : null
+  console.log(query);
+  db.Cities.find(query)
+  .sort({name: 1})
+  .then(data =>{
+    console.log(data.length);
+    res.json(data);
+  })
+
+});
+router.get('/userinfo/:userid', function(req,res){
+  
+  db.Users.findById(req.params.userid)
+  .sort({name: 1})
+  .then(data =>{
+    console.log(data.length);
+    res.json(data);
+  })
+
+});
 
 
 

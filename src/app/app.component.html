@@ -1,6 +1,11 @@
 <div class="container-fluid p-0 m-0">
 
-  <app-nav-bar></app-nav-bar>
+  <app-nav-bar 
+    [userLoggedIn]="userLoggedIn"
+    [userName]="userName"
+    >
+  
+  </app-nav-bar>
   <app-toolbar [pageName]='pageName'></app-toolbar>
   <main class="content">
     <router-outlet></router-outlet>
